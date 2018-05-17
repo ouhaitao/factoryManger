@@ -7,6 +7,7 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
+
 	<context:component-scan base-package="service"/>
 	<context:component-scan base-package="controller"/>
 	<!-- <context:component-scan base-package="com.test"/> -->
@@ -18,9 +19,12 @@
 	<mvc:annotation-driven/>
 	
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix">
+			<value>/WEB-INF/pages/</value>
+		</property>
 		<!-- 视图名称后缀,名字由controller提供 -->
 		<property name="suffix">
-			<value>.jsp</value>
+			<value>.html</value>
 		</property>
 	</bean>
 	

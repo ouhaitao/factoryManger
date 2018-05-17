@@ -6,11 +6,11 @@ import po.Warehouse;
 
 public interface WarehouseService {
 
-	public boolean createWarehouse(Warehouse w);
+	boolean createWarehouse(Warehouse w);
 	
-	public boolean deleteWarehouse(int id);
+	boolean deleteWarehouse(int id);
 	
-	public Warehouse findAllWarehoue();
+	Warehouse findAllWarehoue();
 	
-	public boolean changeWarehouse(Map<String, String> m);
+	boolean changeWarehouse(Map<String, String> m);
 }

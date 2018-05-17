@@ -7,13 +7,13 @@ import po.Order;
 
 public interface OrderService {
 
-	public boolean createOrder(Order o);
+	boolean createOrder(Order o);
 	
-	public boolean deleteOrder(int orderId);
+	boolean deleteOrder(int orderId);
 	
-	public List<Order> findOrderByCusId(int id);
+	List<Order> findOrderByState(int state);
 	
-	public List<Order> findAllOrder();
+	List<Order> findAllOrder();
 	
-	public boolean changeOrder(Map<String, String> m);
+	boolean changeOrder(Map<String, String> m);
 }

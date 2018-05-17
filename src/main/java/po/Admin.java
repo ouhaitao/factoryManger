@@ -4,7 +4,7 @@ package po;
 public class Admin {
 
 	private String username;
-	private String passwrod;
+	private String password;
 	//private AdminBehavior behavior;//管理员的行为
 	private String role;//权限
 
@@ -27,12 +27,12 @@ public class Admin {
 		this.username = username;
 	}
 
-	public String getPasswrod() {
-		return passwrod;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setPasswrod(String passwrod) {
-		this.passwrod = passwrod;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getRole() {
