@@ -1,8 +1,8 @@
 package service;
 
-import java.util.Map;
-
 import po.Warehouse;
+
+import java.util.Map;
 
 public interface WarehouseService {
 

@@ -6,24 +6,24 @@ package po;
 public class QualityReport {
     private int id;//质检单号
     private int oid;//订单id
-    private String declare;//提交部门
+    private String submit;//提交部门
     private String date;//时间
     private int sample;//抽样数量
     private int state;//质检状态
     private int result;//质检结果
     private int scrap;//不合格数量
-    private String explain;
+    private String info;
 
-    public QualityReport(int id, int oid, String declare, String date, int sample, int state, int result, int scrap,String explain) {
+    public QualityReport(int id, int oid, String submit, String date, int sample, int state, int result, int scrap,String info) {
         this.id = id;
         this.oid = oid;
-        this.declare = declare;
+        this.submit = submit;
         this.date = date;
         this.sample = sample;
         this.state = state;
         this.result = result;
         this.scrap = scrap;
-        this.explain=explain;
+        this.info=info;
     }
 
     public QualityReport() {
@@ -45,12 +45,12 @@ public class QualityReport {
         this.oid = oid;
     }
 
-    public String getDeclare() {
-        return declare;
+    public String getsubmit() {
+        return submit;
     }
 
-    public void setDeclare(String declare) {
-        this.declare = declare;
+    public void setsubmit(String submit) {
+        this.submit = submit;
     }
 
     public String getDate() {
@@ -93,11 +93,11 @@ public class QualityReport {
         this.scrap = scrap;
     }
 
-    public String getExplain() {
-        return explain;
+    public String getinfo() {
+        return info;
     }
 
-    public void setExplain(String explain) {
-        this.explain = explain;
+    public void setinfo(String info) {
+        this.info = info;
     }
 }

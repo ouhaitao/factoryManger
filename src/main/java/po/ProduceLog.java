@@ -6,6 +6,7 @@ package po;
 public class ProduceLog {
     private String id;//日志id
     private String oId;//订单id
+    private int process;//订单流程
     private String uId;//管理员id
     private String date;//申报时间
 
@@ -26,6 +27,14 @@ public class ProduceLog {
         this.type = type;
         this.information = information;
         this.result = result;
+    }
+
+    public int getProcess() {
+        return process;
+    }
+
+    public void setProcess(int process) {
+        this.process = process;
     }
 
     public String getId() {

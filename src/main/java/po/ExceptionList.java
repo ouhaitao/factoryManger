@@ -6,30 +6,30 @@ package po;
 public class ExceptionList {
     private int id;//报告单id
     private int oid;//订单id
-    private String declare;//申报部门
+    private String submit;//申报部门
     private int uid;//管理员id
     private String phone;//联系方式
     private String empname;//员工姓名
     private int empid;//员工id
     private String date;//时间
     private int type;//类型
-    private int stop;//是否导致订单停工
+    private int ispause;//是否导致订单停工
     private String summary;//简介
     private String info;//描述
     private String handle;//处理部门
     private String result;//处理结果
 
-    public ExceptionList(int id, int oid, String declare, int uid, String phone, String empname, int empid, String date, int type, int stop, String summary, String info, String handle, String result) {
+    public ExceptionList(int id, int oid, String submit, int uid, String phone, String empname, int empid, String date, int type, int ispause, String summary, String info, String handle, String result) {
         this.id = id;
         this.oid = oid;
-        this.declare = declare;
+        this.submit = submit;
         this.uid = uid;
         this.phone = phone;
         this.empname = empname;
         this.empid = empid;
         this.date = date;
         this.type = type;
-        this.stop = stop;
+        this.ispause = ispause;
         this.summary = summary;
         this.info = info;
         this.handle = handle;
@@ -55,12 +55,12 @@ public class ExceptionList {
         this.oid = oid;
     }
 
-    public String getDeclare() {
-        return declare;
+    public String getsubmit() {
+        return submit;
     }
 
-    public void setDeclare(String declare) {
-        this.declare = declare;
+    public void setsubmit(String submit) {
+        this.submit = submit;
     }
 
     public int getUid() {
@@ -111,12 +111,12 @@ public class ExceptionList {
         this.type = type;
     }
 
-    public int getStop() {
-        return stop;
+    public int getispause() {
+        return ispause;
     }
 
-    public void setStop(int stop) {
-        this.stop = stop;
+    public void setispause(int ispause) {
+        this.ispause = ispause;
     }
 
     public String getSummary() {
