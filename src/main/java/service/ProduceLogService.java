@@ -12,7 +12,7 @@ public interface ProduceLogService {
      * @param produceLog
      * @return
      */
-    boolean createLog(ProduceLog produceLog);
+    boolean insertLog(ProduceLog produceLog);
 
     /**
      * 删除生产日志，暂时不用实现
@@ -26,7 +26,7 @@ public interface ProduceLogService {
      * @param map 查询条件（暂时仅有订单id（key=oid））
      * @return 查询的结果集
      */
-    List<ProduceLog> select(Map<String,String> map);
+    List<ProduceLog> selectLog(Map<String,String> map);
 
     /**
      * 更新生产日志

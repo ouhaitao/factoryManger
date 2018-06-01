@@ -1,20 +1,19 @@
 package mapper;
 
-import org.apache.ibatis.annotations.Insert;
 import po.ProduceLog;
 
-import java.util.List;
-import java.util.Map;
-
 public interface ProduceLogMapper {
+    int deleteByPrimaryKey(Integer id);
 
-    @Insert(value = "INSERT INTO produceLog VALUES(#{id},#{oId},#{uId},#{date},#{type},#{information},#{result})")
-    int insert(ProduceLog logs);
+    int insert(ProduceLog record);
 
-    int delete(ProduceLog logs);
+    int insertSelective(ProduceLog record);
 
-    List<ProduceLog> select(Map<String,String > map);
+    ProduceLog selectByPrimaryKey(Integer id);
 
-    int update(ProduceLog logs);
+    int updateByPrimaryKeySelective(ProduceLog record);
 
+    int updateByPrimaryKeyWithBLOBs(ProduceLog record);
+
+    int updateByPrimaryKey(ProduceLog record);
 }

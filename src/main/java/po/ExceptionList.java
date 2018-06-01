@@ -13,13 +13,13 @@ public class ExceptionList {
     private int empid;//员工id
     private String date;//时间
     private int type;//类型
-    private int ispause;//是否导致订单停工
+    private int pause;//是否导致订单停工
     private String summary;//简介
     private String info;//描述
     private String handle;//处理部门
     private String result;//处理结果
 
-    public ExceptionList(int id, int oid, String submit, int uid, String phone, String empname, int empid, String date, int type, int ispause, String summary, String info, String handle, String result) {
+    public ExceptionList(int id, int oid, String submit, int uid, String phone, String empname, int empid, String date, int type, int pause, String summary, String info, String handle, String result) {
         this.id = id;
         this.oid = oid;
         this.submit = submit;
@@ -29,7 +29,7 @@ public class ExceptionList {
         this.empid = empid;
         this.date = date;
         this.type = type;
-        this.ispause = ispause;
+        this.pause = pause;
         this.summary = summary;
         this.info = info;
         this.handle = handle;
@@ -111,12 +111,12 @@ public class ExceptionList {
         this.type = type;
     }
 
-    public int getispause() {
-        return ispause;
+    public int getpause() {
+        return pause;
     }
 
-    public void setispause(int ispause) {
-        this.ispause = ispause;
+    public void setpause(int pause) {
+        this.pause = pause;
     }
 
     public String getSummary() {

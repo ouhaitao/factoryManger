@@ -2,16 +2,16 @@ package mapper;
 
 import po.Order;
 
-import java.util.List;
-import java.util.Map;
-
 public interface OrderMapper {
+    int deleteByPrimaryKey(Integer id);
 
-    int insert(Order order);
+    int insert(Order record);
 
-    int delete(Map<String ,String> map);
+    int insertSelective(Order record);
 
-    List<Order> select(Map<String,String> map);
+    Order selectByPrimaryKey(Integer id);
 
-    int update(Order order);
+    int updateByPrimaryKeySelective(Order record);
+
+    int updateByPrimaryKey(Order record);
 }

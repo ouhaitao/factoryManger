@@ -2,16 +2,16 @@ package mapper;
 
 import po.Warehouse;
 
-import java.util.List;
-import java.util.Map;
-
 public interface WarehouseMapper {
+    int deleteByPrimaryKey(Integer id);
 
-    int insert(Warehouse warehouse);
+    int insert(Warehouse record);
 
-    int delete(Map<String,String> map);
+    int insertSelective(Warehouse record);
 
-    List<Warehouse> select(Map<String,String> map);
+    Warehouse selectByPrimaryKey(Integer id);
 
-    int update(Warehouse warehouse);
+    int updateByPrimaryKeySelective(Warehouse record);
+
+    int updateByPrimaryKey(Warehouse record);
 }

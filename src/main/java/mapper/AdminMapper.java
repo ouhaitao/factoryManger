@@ -1,21 +1,17 @@
 package mapper;
 
-import org.apache.ibatis.annotations.Select;
 import po.Admin;
 
-import java.util.List;
-import java.util.Map;
-
 public interface AdminMapper {
+    int deleteByPrimaryKey(String username);
 
-    @Select("select * from admin where username=#{username}")
-    Admin selectById(String username);
+    int insert(Admin record);
 
-    int insert(Admin admin);
+    int insertSelective(Admin record);
 
-    int delete(Admin admin);
+    Admin selectByPrimaryKey(String username);
 
-    List<Admin> select(Map<String,String> map);
+    int updateByPrimaryKeySelective(Admin record);
 
-    int update(Admin admin);
+    int updateByPrimaryKey(Admin record);
 }
