@@ -4,13 +4,13 @@ package po;
  *用来记录生产过程中的日志信息,如生产中的保修信息，人员调动，补货退货，质检报告等信息
  */
 public class ProduceLog {
-    private String id;//日志id
-    private String oId;//订单id
+    private int id;//日志id
+    private int oId;//订单id
     private int process;//订单流程
-    private String uId;//管理员id
+    private int uId;//管理员id
     private String date;//提交时间
 
-    private String type;//日志类型
+    private int type;//日志类型
     private String information;//日志内容
     private String result;//处理结果
 
@@ -19,9 +19,9 @@ public class ProduceLog {
 
     }
 
-    public ProduceLog(String id, String oId, String uId, String date, String type, String information, String result) {
-        this.id = id;
+    public ProduceLog( int oId,int process,int uId, String date, int type, String information, String result) {
         this.oId = oId;
+        this.process=process;
         this.uId = uId;
         this.date = date;
         this.type = type;
@@ -37,35 +37,35 @@ public class ProduceLog {
         this.process = process;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getoId() {
+    public int getoId() {
         return oId;
     }
 
-    public void setoId(String oId) {
+    public void setoId(int oId) {
         this.oId = oId;
     }
 
-    public String getuId() {
+    public int getuId() {
         return uId;
     }
 
-    public void setuId(String uId) {
+    public void setuId(int uId) {
         this.uId = uId;
     }
 
-    public String getType() {
+    public int getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(int type) {
         this.type = type;
     }
 
