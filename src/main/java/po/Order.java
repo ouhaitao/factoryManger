@@ -71,4 +71,26 @@ public class Order {
 	public void setRate(int rate) {
 		this.rate = rate;
 	}
+
+	/**
+	 * 判断该订单是否信息异常
+	 * @return
+	 */
+	public boolean isError(){
+		if (size<=0||productNum<=0||rate<0||rate>productNum||process<0||process>3||state<-2||state>1){
+			return true;
+		}
+		return false;
+	}
+	@Override
+	public String toString() {
+		return "Order{" +
+				"size=" + size +
+				", productNum=" + productNum +
+				", id=" + id +
+				", process=" + process +
+				", state=" + state +
+				", rate=" + rate +
+				'}';
+	}
 }

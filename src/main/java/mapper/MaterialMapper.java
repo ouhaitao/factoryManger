@@ -3,7 +3,7 @@ package mapper;
 import po.Material;
 
 public interface MaterialMapper {
-    int deleteByPrimaryKey(Material key);
+    int deleteByPrimaryKey(int key);
 
     int insert(Material record);
 

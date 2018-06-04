@@ -8,7 +8,7 @@ public class ProduceLog {
     private String oId;//订单id
     private int process;//订单流程
     private String uId;//管理员id
-    private String date;//申报时间
+    private String date;//提交时间
 
     private String type;//日志类型
     private String information;//日志内容
@@ -91,5 +91,19 @@ public class ProduceLog {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    @Override
+    public String toString() {
+        return "ProduceLog{" +
+                "id='" + id + '\'' +
+                ", oId='" + oId + '\'' +
+                ", process=" + process +
+                ", uId='" + uId + '\'' +
+                ", date='" + date + '\'' +
+                ", type='" + type + '\'' +
+                ", information='" + information + '\'' +
+                ", result='" + result + '\'' +
+                '}';
     }
 }

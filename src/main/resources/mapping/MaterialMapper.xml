@@ -13,17 +13,16 @@
   <sql id="Base_Column_List" >
     oid, process, mid, predict, reality, consume, scrap
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="po.MaterialKey" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="po.Material" >
     select 
     <include refid="Base_Column_List" />
     from atb_material
     where oid = #{oid,jdbcType=INTEGER}
       and process = #{process,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="po.MaterialKey" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from atb_material
     where oid = #{oid,jdbcType=INTEGER}
-      and process = #{process,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="po.Material" >
     insert into atb_material (oid, process, mid, 

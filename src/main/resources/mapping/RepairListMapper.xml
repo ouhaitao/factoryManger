@@ -19,7 +19,7 @@
     id, submit, uid, phone, date, type, summary, info, mark, handle, result
   </sql>
 
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from atb_repairList
@@ -31,7 +31,7 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
 
-  <insert id="insert" parameterType="po.RepairListWithBLOBs" >
+  <insert id="insert" parameterType="po.RepairList" >
     insert into atb_repairList (id, submit, uid, 
       phone, date, type, summary, 
       handle, result, info, 
@@ -42,7 +42,7 @@
       #{mark,jdbcType=LONGVARCHAR})
   </insert>
 
-  <insert id="insertSelective" parameterType="po.RepairListWithBLOBs" >
+  <insert id="insertSelective" parameterType="po.RepairList" >
     insert into atb_repairList
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -116,7 +116,7 @@
     </trim>
   </insert>
 
-  <update id="updateByPrimaryKeySelective" parameterType="po.RepairListWithBLOBs" >
+  <update id="updateByPrimaryKeySelective" parameterType="po.RepairList" >
     update atb_repairList
     <set >
       <if test="submit != null" >
@@ -152,7 +152,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="po.RepairListWithBLOBs" >
+  <update id="updateByPrimaryKey" parameterType="po.RepairList" >
     update atb_repairList
     set submit = #{submit,jdbcType=VARCHAR},
       uid = #{uid,jdbcType=INTEGER},

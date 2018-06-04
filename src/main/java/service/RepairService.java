@@ -23,7 +23,7 @@ public interface RepairService {
 
     /**
      * 查询记录
-     * @param m
+     * @param m 查询条件，如生产流程（process）
      * @return
      */
     List<RepairList> selectRepair(Map<String,String> m);

@@ -23,6 +23,8 @@ public interface QualityService {
 
     /**
      * 查询质检报告列表
+     * 根据controller调用的参数state来查询历史报告还是当前质检报告
+     * state="now" 当前，state="history" 历史记录
      * @param map
      * @return
      */

@@ -100,4 +100,19 @@ public class QualityReport {
     public void setinfo(String info) {
         this.info = info;
     }
+
+    @Override
+    public String toString() {
+        return "QualityReport{" +
+                "id=" + id +
+                ", oid=" + oid +
+                ", submit='" + submit + '\'' +
+                ", date='" + date + '\'' +
+                ", sample=" + sample +
+                ", state=" + state +
+                ", result=" + result +
+                ", scrap=" + scrap +
+                ", info='" + info + '\'' +
+                '}';
+    }
 }

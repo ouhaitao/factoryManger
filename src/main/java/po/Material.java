@@ -82,4 +82,17 @@ public class Material {
     public void setScrap(int scrap) {
         this.scrap = scrap;
     }
+
+    @Override
+    public String toString() {
+        return "Material{" +
+                "oid=" + oid +
+                ", process=" + process +
+                ", mid=" + mid +
+                ", predict=" + predict +
+                ", reality=" + reality +
+                ", consume=" + consume +
+                ", scrap=" + scrap +
+                '}';
+    }
 }

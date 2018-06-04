@@ -14,7 +14,7 @@ public class MyUserDetailService implements UserDetailsService {
     AdminMapper adminMapper;
     @Override
     public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
-        Admin admin=adminMapper.selectById(id);
+        Admin admin=adminMapper.selectByPrimaryKey(id);
         if (admin==null){
             throw new UsernameNotFoundException("UserId " + id + " not found");
         }

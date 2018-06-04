@@ -18,7 +18,7 @@ public class OrderController {
      * @param process 当前流程
      * @return
      */
-    @GetMapping(value = "/department/{process}/waitlist")
+    @GetMapping(value = "/process/{process}/orders")
     public String apiGetWaitOrderList(@PathVariable("process") int process){
         List<Order> list=null;
 
@@ -32,7 +32,7 @@ public class OrderController {
      * @param process 订单所处流程，也对应每一个流程部门
      * @return ordermodel
      */
-    @GetMapping(value="/department/{process}/ordermodel")
+    @GetMapping(value="/process/{process}/ordermodel")
     public String apiGetOrderModel(@PathVariable("process") int process){
 
         return JSON.toJSONString("");
@@ -44,7 +44,7 @@ public class OrderController {
      * @param process 流程
      * @return
      */
-    @GetMapping(value = "/order/{oid}/department/{process}producelog")
+    @GetMapping(value = "/order/{oid}/process/{process}producelog")
     public String apiGetProduceLog(@PathVariable ("oid") String oid,@PathVariable("process") String process){
         List<ProduceLog> list=null;
 
@@ -72,8 +72,8 @@ public class OrderController {
      * @param map {"operate":"要进行的操作",""}
      * @return 操作结果
      */
-    @PutMapping(value = "/order/{oid}/department/{process}/state")
-    public String apiUpdateOrder(@PathVariable("oid")String id,@PathVariable("process")String process,@RequestBody Map<String,String> map){
+    @PutMapping(value = "/order/{oid}/process/{process}/state")
+    public String apiUpdateOrderState(@PathVariable("oid")String id,@PathVariable("process")String process,@RequestBody Map<String,String> map){
             String k=map.get("operate");
             switch (k){
                 case "produce":
@@ -104,7 +104,7 @@ public class OrderController {
      * @param map {"operate":"要进行的操作","num":"数量"}
      * @return 操作是否成功
      */
-    @PutMapping(value = "/order/{oid}/department/{process}/material")
+    @PutMapping(value = "/order/{oid}/process/{process}/material")
     public String apiUpdateMaterial(@PathVariable("oid")String id,@PathVariable("process")String process, @RequestBody Map<String,String> map){
         String k=map.get("operate");
         switch (k){
@@ -132,9 +132,29 @@ public class OrderController {
      * @param map {"date":"时间","num","生产数量"}
      * @return
      */
-    @PostMapping(value = "/order/{oid}/department/{process}/rate")
+    @PostMapping(value = "/order/{oid}/process/{process}/rate")
     public String apiAddProduceLog(@PathVariable("oid")String id,@PathVariable("process")String process,@RequestBody Map<String,String> map){
 
+
+        return "result";
+    }
+
+    /**
+     * 获取正在处理中的质检
+     * @return
+     */
+    @GetMapping(value = "/order/{oid}/process/{process}/quality")
+    public String apiGetNowQuality(@PathVariable("oid")String oid,@PathVariable("process")String process){
+
+        return "result";
+    }
+
+    /**
+     * 获取当前订单的历史质检结果
+     * @return
+     */
+    @GetMapping(value = "/order/{oid}/process/{process}/qualitys")
+    public String apiGetHistoryQuality(@PathVariable("oid")String oid,@PathVariable("process")String process){
 
         return "result";
     }

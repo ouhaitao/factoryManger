@@ -150,4 +150,24 @@ public class ExceptionList {
     public void setResult(String result) {
         this.result = result;
     }
+
+    @Override
+    public String toString() {
+        return "ExceptionList{" +
+                "id=" + id +
+                ", oid=" + oid +
+                ", submit='" + submit + '\'' +
+                ", uid=" + uid +
+                ", phone='" + phone + '\'' +
+                ", empname='" + empname + '\'' +
+                ", empid=" + empid +
+                ", date='" + date + '\'' +
+                ", type=" + type +
+                ", pause=" + pause +
+                ", summary='" + summary + '\'' +
+                ", info='" + info + '\'' +
+                ", handle='" + handle + '\'' +
+                ", result='" + result + '\'' +
+                '}';
+    }
 }

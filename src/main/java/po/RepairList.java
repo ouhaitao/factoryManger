@@ -120,4 +120,21 @@ public class RepairList {
     public void setResult(String result) {
         this.result = result;
     }
+
+    @Override
+    public String toString() {
+        return "RepairList{" +
+                "id=" + id +
+                ", submit='" + submit + '\'' +
+                ", uid=" + uid +
+                ", phone='" + phone + '\'' +
+                ", date='" + date + '\'' +
+                ", type=" + type +
+                ", summary='" + summary + '\'' +
+                ", info='" + info + '\'' +
+                ", mark='" + mark + '\'' +
+                ", handle='" + handle + '\'' +
+                ", result='" + result + '\'' +
+                '}';
+    }
 }

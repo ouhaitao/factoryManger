@@ -48,4 +48,14 @@ public class Rate {
     public void setProduce(int produce) {
         this.produce = produce;
     }
+
+    @Override
+    public String toString() {
+        return "Rate{" +
+                "id=" + id +
+                ", process=" + process +
+                ", date='" + date + '\'' +
+                ", produce=" + produce +
+                '}';
+    }
 }

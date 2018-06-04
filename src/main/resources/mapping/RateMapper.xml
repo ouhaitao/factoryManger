@@ -10,14 +10,14 @@
   <sql id="Base_Column_List" >
     id, process, date, produce
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="po.RateKey" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="po.Rate" >
     select 
     <include refid="Base_Column_List" />
     from atb_rate
     where id = #{id,jdbcType=INTEGER}
       and process = #{process,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="po.RateKey" >
+  <delete id="deleteByPrimaryKey" parameterType="po.Rate" >
     delete from atb_rate
     where id = #{id,jdbcType=INTEGER}
       and process = #{process,jdbcType=INTEGER}
