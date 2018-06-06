@@ -11,6 +11,8 @@ public interface MaterialMapper {
 
     Material selectByPrimaryKey(Material key);
 
+    Material selectByOrderId(Integer oderId,Integer process);
+
     int updateByPrimaryKeySelective(Material record);
 
     int updateByPrimaryKey(Material record);

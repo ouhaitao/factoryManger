@@ -13,7 +13,5 @@ public interface ProduceLogMapper {
 
     int updateByPrimaryKeySelective(ProduceLog record);
 
-    int updateByPrimaryKeyWithBLOBs(ProduceLog record);
-
     int updateByPrimaryKey(ProduceLog record);
 }
