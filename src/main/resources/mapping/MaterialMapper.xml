@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.MaterialMapper" >
+  <resultMap id="BaseResultMap" type="po.Material" >
+    <id column="oid" property="oid" jdbcType="INTEGER" />
+    <id column="process" property="process" jdbcType="INTEGER" />
+    <result column="mid" property="mid" jdbcType="INTEGER" />
+    <result column="predict" property="predict" jdbcType="INTEGER" />
+    <result column="reality" property="reality" jdbcType="INTEGER" />
+    <result column="consume" property="consume" jdbcType="INTEGER" />
+    <result column="scrap" property="scrap" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    oid, process, mid, predict, reality, consume, scrap
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="po.Material" >
+    select 
+    <include refid="Base_Column_List" />
+    from atb_material
+    where oid = #{oid,jdbcType=INTEGER}
+      and process = #{process,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from atb_material
+    where oid = #{oid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="po.Material" >
+    insert into atb_material (oid, process, mid, 
+      predict, reality, consume, 
+      scrap)
+    values (#{oid,jdbcType=INTEGER}, #{process,jdbcType=INTEGER}, #{mid,jdbcType=INTEGER}, 
+      #{predict,jdbcType=INTEGER}, #{reality,jdbcType=INTEGER}, #{consume,jdbcType=INTEGER}, 
+      #{scrap,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="po.Material" >
+    insert into atb_material
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="oid != null" >
+        oid,
+      </if>
+      <if test="process != null" >
+        process,
+      </if>
+      <if test="mid != null" >
+        mid,
+      </if>
+      <if test="predict != null" >
+        predict,
+      </if>
+      <if test="reality != null" >
+        reality,
+      </if>
+      <if test="consume != null" >
+        consume,
+      </if>
+      <if test="scrap != null" >
+        scrap,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="oid != null" >
+        #{oid,jdbcType=INTEGER},
+      </if>
+      <if test="process != null" >
+        #{process,jdbcType=INTEGER},
+      </if>
+      <if test="mid != null" >
+        #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="predict != null" >
+        #{predict,jdbcType=INTEGER},
+      </if>
+      <if test="reality != null" >
+        #{reality,jdbcType=INTEGER},
+      </if>
+      <if test="consume != null" >
+        #{consume,jdbcType=INTEGER},
+      </if>
+      <if test="scrap != null" >
+        #{scrap,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="po.Material" >
+    update atb_material
+    <set >
+      <if test="mid != null" >
+        mid = #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="predict != null" >
+        predict = #{predict,jdbcType=INTEGER},
+      </if>
+      <if test="reality != null" >
+        reality = #{reality,jdbcType=INTEGER},
+      </if>
+      <if test="consume != null" >
+        consume = #{consume,jdbcType=INTEGER},
+      </if>
+      <if test="scrap != null" >
+        scrap = #{scrap,jdbcType=INTEGER},
+      </if>
+    </set>
+    where oid = #{oid,jdbcType=INTEGER}
+      and process = #{process,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="po.Material" >
+    update atb_material
+    set mid = #{mid,jdbcType=INTEGER},
+      predict = #{predict,jdbcType=INTEGER},
+      reality = #{reality,jdbcType=INTEGER},
+      consume = #{consume,jdbcType=INTEGER},
+      scrap = #{scrap,jdbcType=INTEGER}
+    where oid = #{oid,jdbcType=INTEGER}
+      and process = #{process,jdbcType=INTEGER}
+  </update>
+</mapper>

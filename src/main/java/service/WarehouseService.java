@@ -1,16 +1,35 @@
 package service;
 
-import java.util.Map;
-
 import po.Warehouse;
+
+import java.util.List;
 
 public interface WarehouseService {
 
-	public boolean createWarehouse(Warehouse w);
-	
-	public boolean deleteWarehouse(int id);
-	
-	public Warehouse findAllWarehoue();
-	
-	public boolean changeWarehouse(Map<String, String> m);
+	/**
+	 * 新建一个仓库
+	 * @param w
+	 * @return
+	 */
+	boolean createWarehouse(Warehouse w);
+
+	/**
+	 * 删除一个仓库
+	 * @param id
+	 * @return
+	 */
+	boolean deleteWarehouse(int id);
+
+	/**
+	 * 查询所有的仓库
+	 * @return
+	 */
+	List<Warehouse> findAllWarehoue();
+
+	/**
+	 * 更新仓库信息
+	 * @param wh
+	 * @return
+	 */
+	boolean changeWarehouse(Warehouse wh);
 }

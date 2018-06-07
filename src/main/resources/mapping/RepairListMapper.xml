@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.RepairListMapper" >
+  <resultMap id="BaseResultMap" type="po.RepairList" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="submit" property="submit" jdbcType="VARCHAR" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="date" property="date" jdbcType="TIME" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="summary" property="summary" jdbcType="VARCHAR" />
+    <result column="info" property="info" jdbcType="LONGVARCHAR" />
+    <result column="mark" property="mark" jdbcType="LONGVARCHAR" />
+    <result column="handle" property="handle" jdbcType="VARCHAR" />
+    <result column="result" property="result" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, submit, uid, phone, date, type, summary, info, mark, handle, result
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from atb_repairList
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from atb_repairList
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="po.RepairList" >
+    insert into atb_repairList (id, submit, uid, 
+      phone, date, type, summary, 
+      handle, result, info, 
+      mark)
+    values (#{id,jdbcType=INTEGER}, #{submit,jdbcType=VARCHAR}, #{uid,jdbcType=INTEGER}, 
+      #{phone,jdbcType=VARCHAR}, #{date,jdbcType=TIME}, #{type,jdbcType=INTEGER}, #{summary,jdbcType=VARCHAR}, 
+      #{handle,jdbcType=VARCHAR}, #{result,jdbcType=VARCHAR}, #{info,jdbcType=LONGVARCHAR}, 
+      #{mark,jdbcType=LONGVARCHAR})
+  </insert>
+
+  <insert id="insertSelective" parameterType="po.RepairList" >
+    insert into atb_repairList
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="submit != null" >
+        submit,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="summary != null" >
+        summary,
+      </if>
+      <if test="handle != null" >
+        handle,
+      </if>
+      <if test="result != null" >
+        result,
+      </if>
+      <if test="info != null" >
+        info,
+      </if>
+      <if test="mark != null" >
+        mark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="submit != null" >
+        #{submit,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=TIME},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="summary != null" >
+        #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="handle != null" >
+        #{handle,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null" >
+        #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="info != null" >
+        #{info,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="mark != null" >
+        #{mark,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="po.RepairList" >
+    update atb_repairList
+    <set >
+      <if test="submit != null" >
+        submit = #{submit,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        date = #{date,jdbcType=TIME},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="summary != null" >
+        summary = #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="handle != null" >
+        handle = #{handle,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null" >
+        result = #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="info != null" >
+        info = #{info,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="mark != null" >
+        mark = #{mark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="po.RepairList" >
+    update atb_repairList
+    set submit = #{submit,jdbcType=VARCHAR},
+      uid = #{uid,jdbcType=INTEGER},
+      phone = #{phone,jdbcType=VARCHAR},
+      date = #{date,jdbcType=TIME},
+      type = #{type,jdbcType=INTEGER},
+      summary = #{summary,jdbcType=VARCHAR},
+      handle = #{handle,jdbcType=VARCHAR},
+      result = #{result,jdbcType=VARCHAR},
+      info = #{info,jdbcType=LONGVARCHAR},
+      mark = #{mark,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

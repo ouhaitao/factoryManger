@@ -1,0 +1,276 @@
+a{
+    text-decoration:none;
+}
+a:link {
+    text-decoration: none;
+    color: white;
+}
+a:visited {
+    text-decoration: none;
+    color: white;
+}
+a:hover {
+    text-decoration: none;
+    /*color: white;*/
+}
+a:active {
+    text-decoration: none;
+    color: white;
+}
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    color: white;
+}
+li{
+    height: 35px;
+    line-height: 35px;
+
+}
+/*head_nav start*/
+.head_nav{
+    width: auto;
+    height: 50px;
+    background-color: #3e4659;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 90;
+    min-width: 1290px;
+    line-height: 30px;
+    color: white;
+    padding:10px 0 10px 0;
+}
+.head_item{
+    /*font-size: 18px;*/
+    font-weight: bold;
+    float: left;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 10px;
+
+}
+#admin_name{
+    width: 150px;
+    text-align: center;
+    font-size: 18px;
+    border-right: 1px solid rgb(99, 99, 99);
+}
+#admin_role{
+    width: 80px;
+    text-align: center;
+    font-size: 12px;
+    background: #d58512;
+    border-radius: 5px;
+}
+#work_title{
+    width: 150px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    margin-top: -10px;
+    font-size: 18px;
+    color: #6b6d8e;
+    background-color: rgb(232,237,234);
+}
+/*head_nav end*/
+
+/*bottom_container start*/
+
+    /*left_nav start*/
+.left_nav{
+    width: 250px;
+    height: 100%;
+    position: fixed;;
+    top:50px;
+    left: 0px;
+    background-color: #474f61;
+}
+
+.left_top{
+
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.btn_log{
+    width: 150px;
+    font-size: 18px;
+    background-color: #1b6d85;
+    color: white;
+    border: 0;
+}
+.line_top{
+    height: 1px;
+    width: 100%;
+    background-color: #3e4659;
+}
+.line_bottom{
+    height: 1px;
+    width: 100%;
+    background-color: #50596e;
+}
+
+.left_menu{
+    width: 150px;
+    margin: 10px 50px 10px 50px;
+}
+.order_admin,.affairs_admin,.data_admin{
+    width: 150px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.menu_label{
+    width: 150px;
+    font-size: 18px;
+    text-align: center;
+    color: white;
+
+}
+.ico{
+    width: 20px;
+    color: white;
+    font-size: 18px;
+    margin-right: 10px;
+}
+    /*left_nav end*/
+
+    /*right_container start*/
+.right_container{
+    box-sizing: border-box;
+    width: auto;
+    height: 100%;
+    position: absolute;
+    left: 250px;
+    margin-top: 50px;
+    padding: 15px;
+    background-color: rgb(232,237,234);
+}
+.search_order{
+    float: left;
+    width: 100%;
+    margin-bottom: 15px;
+    padding-top: 13px;
+    height: 60px;
+    background-color: white;
+    border-radius: 5px;
+}
+.input-group input{
+    height: 34px;
+}
+
+.order_list{
+    float: left;
+    width:100%;
+    margin-top: 15px;
+    padding: 13px;
+    height: auto;
+    background-color: white;
+    border-radius: 5px;
+}
+.order_list tr{
+    width: 100%;
+    height: 50px;
+
+}
+.order_list td {
+    min-width: 17%;
+    padding: 0 0 0 5px;
+    line-height: 50px;
+    background-color: rgba(255,255,255,1);
+
+}
+.order_list thead{
+    width: 100%;
+}
+.order_list tbody{
+    width: 100%;
+}
+
+.order_list a{
+    color: black;
+}
+
+.page_produce{
+    width: 100%;
+    display: none;
+}
+.order_data{
+    width: 100%;
+    background-color: white;
+    height: auto;
+    overflow: auto;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+#more{
+    width: 100%;
+    height: auto;
+    background-color: white;
+    /*border-radius: 5px;*/
+    line-height: 50px;
+    /*border-top: 1px solid;*/
+}
+.panel{
+    border-radius: 0px;
+    margin-bottom: 20px;
+}
+.panel-heading{
+    padding: 10px 5px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.btn_group{
+    float: right;
+    margin-right: 5px;
+}
+
+.order_log{
+    margin-bottom: 50px;
+}
+/*分页按钮栏样式*/
+.pagination{
+    margin: 0 10px;
+}
+
+.malfunction{
+    width: 100%;
+
+    display: none;
+    height: auto;
+    /*background-color: white;*/
+    /*padding-bottom: 50px;*/
+}
+#sub_malfunction{
+    /*float: right;*/
+}
+
+.malfunction textarea{
+    height: 80px;
+}
+
+.employee{
+    width: 100%;
+    display: none;
+    /*background-color: white;*/
+}
+.quality{
+    width: 100%;
+    display: none;
+}
+
+.data{
+    width: 100%;
+    display: none;
+}
+
+    /*right_contariner end*/
+
+
+/*bottom_container end*/

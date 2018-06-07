@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.ProduceLogMapper" >
+  <resultMap id="BaseResultMap" type="po.ProduceLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="oid" property="oid" jdbcType="INTEGER" />
+    <result column="process" property="process" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="date" property="date" jdbcType="TIME" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="information" property="information" jdbcType="LONGVARCHAR" />
+    <result column="result" property="result" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, oid, process, uid, date, type, information, result
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from atb_produceLog
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from atb_produceLog
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="po.ProduceLog" >
+    insert into atb_produceLog (id, oid, process, 
+      uid, date, type, result, 
+      information)
+    values (#{id,jdbcType=INTEGER}, #{oid,jdbcType=INTEGER}, #{process,jdbcType=INTEGER}, 
+      #{uid,jdbcType=INTEGER}, #{date,jdbcType=TIME}, #{type,jdbcType=INTEGER}, #{result,jdbcType=VARCHAR}, 
+      #{information,jdbcType=LONGVARCHAR})
+  </insert>
+
+  <insert id="insertSelective" parameterType="po.ProduceLog" >
+    insert into atb_produceLog
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="oid != null" >
+        oid,
+      </if>
+      <if test="process != null" >
+        process,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="result != null" >
+        result,
+      </if>
+      <if test="information != null" >
+        information,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="oid != null" >
+        #{oid,jdbcType=INTEGER},
+      </if>
+      <if test="process != null" >
+        #{process,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=TIME},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="result != null" >
+        #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="information != null" >
+        #{information,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="po.ProduceLog" >
+    update atb_produceLog
+    <set >
+      <if test="oid != null" >
+        oid = #{oid,jdbcType=INTEGER},
+      </if>
+      <if test="process != null" >
+        process = #{process,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="date != null" >
+        date = #{date,jdbcType=TIME},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="result != null" >
+        result = #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="information != null" >
+        information = #{information,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="po.ProduceLog" >
+    update atb_produceLog
+    set oid = #{oid,jdbcType=INTEGER},
+      process = #{process,jdbcType=INTEGER},
+      uid = #{uid,jdbcType=INTEGER},
+      date = #{date,jdbcType=TIME},
+      type = #{type,jdbcType=INTEGER},
+      result = #{result,jdbcType=VARCHAR},
+      information = #{information,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

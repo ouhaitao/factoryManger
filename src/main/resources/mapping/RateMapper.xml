@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.RateMapper" >
+  <resultMap id="BaseResultMap" type="po.Rate" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <id column="process" property="process" jdbcType="INTEGER" />
+    <result column="date" property="date" jdbcType="TIME" />
+    <result column="produce" property="produce" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, process, date, produce
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="po.Rate" >
+    select 
+    <include refid="Base_Column_List" />
+    from atb_rate
+    where id = #{id,jdbcType=INTEGER}
+      and process = #{process,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="po.Rate" >
+    delete from atb_rate
+    where id = #{id,jdbcType=INTEGER}
+      and process = #{process,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="po.Rate" >
+    insert into atb_rate (id, process, date, 
+      produce)
+    values (#{id,jdbcType=INTEGER}, #{process,jdbcType=INTEGER}, #{date,jdbcType=TIME}, 
+      #{produce,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="po.Rate" >
+    insert into atb_rate
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="process != null" >
+        process,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+      <if test="produce != null" >
+        produce,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="process != null" >
+        #{process,jdbcType=INTEGER},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=TIME},
+      </if>
+      <if test="produce != null" >
+        #{produce,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="po.Rate" >
+    update atb_rate
+    <set >
+      <if test="date != null" >
+        date = #{date,jdbcType=TIME},
+      </if>
+      <if test="produce != null" >
+        produce = #{produce,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+      and process = #{process,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="po.Rate" >
+    update atb_rate
+    set date = #{date,jdbcType=TIME},
+      produce = #{produce,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+      and process = #{process,jdbcType=INTEGER}
+  </update>
+</mapper>

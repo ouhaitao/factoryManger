@@ -1,67 +1,34 @@
 package po;
 
-import java.util.HashMap;
-
 //订单
 public class Order {
-
-	private Address address;//用户地址
 	private int size;//纸杯容量
 	private int productNum;//产品数量
-	private String picture;//图片地址
 	
 	private int id;
-	private String customerId;//用户id
-	private HashMap<String, Integer> material;//key:原料 value:数量
-	
+//	private HashMap<String, Integer> material;//key:原料 value:数量
+	private int process;//订单流程，订单处于的工艺流程，{"0":"印刷","1":"模切","2":"成型","3":"包装"}
+	private int state;//订单状态，未开始为-1，生产中为0，暂停为-2，质检为1
+	private int rate;//订单已完成数量
+
 	public Order() {
 	}
-	
-	public Order(String customerId, int productNum, int materialTypeNum, String picture, int size) {
-		this.customerId = customerId;
-		this.productNum = productNum;
-		this.picture = picture;
+
+	public Order(int size, int productNum, int id,int process, int state, int rate) {
 		this.size = size;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public int getProductNum() {
-		return productNum;
-	}
-
-	public void setProductNum(int productNum) {
 		this.productNum = productNum;
+		this.process=process;
+		this.id = id;
+		this.state = state;
+		this.rate = rate;
 	}
 
-	public String getCustomerId() {
-		return customerId;
+	public int getProcess() {
+		return process;
 	}
 
-	public void setCustomerId(String customerId) {
-		this.customerId = customerId;
-	}
-
-	public HashMap<String, Integer> getMaterial() {
-		return material;
-	}
-
-	public void setMaterial(HashMap<String, Integer> material) {
-		this.material = material;
-	}
-
-	public String getPicture() {
-		return picture;
-	}
-
-	public void setPicture(String picture) {
-		this.picture = picture;
+	public void setProcess(int process) {
+		this.process = process;
 	}
 
 	public int getSize() {
@@ -72,12 +39,58 @@ public class Order {
 		this.size = size;
 	}
 
-	public Address getAddress() {
-		return address;
+	public int getProductNum() {
+		return productNum;
 	}
 
-	public void setAddress(Address address) {
-		this.address = address;
+	public void setProductNum(int productNum) {
+		this.productNum = productNum;
 	}
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+	public int getState() {
+		return state;
+	}
+
+	public void setState(int state) {
+		this.state = state;
+	}
+
+	public int getRate() {
+		return rate;
+	}
+
+	public void setRate(int rate) {
+		this.rate = rate;
+	}
+
+	/**
+	 * 判断该订单是否信息异常
+	 * @return
+	 */
+	public boolean isError(){
+		if (size<=0||productNum<=0||rate<0||rate>productNum||process<0||process>3||state<-2||state>1){
+			return true;
+		}
+		return false;
+	}
+	@Override
+	public String toString() {
+		return "Order{" +
+				"size=" + size +
+				", productNum=" + productNum +
+				", id=" + id +
+				", process=" + process +
+				", state=" + state +
+				", rate=" + rate +
+				'}';
+	}
 }
