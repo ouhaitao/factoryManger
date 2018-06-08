@@ -2,6 +2,8 @@ package mapper;
 
 import po.ProduceLog;
 
+import java.util.List;
+
 public interface ProduceLogMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -11,9 +13,9 @@ public interface ProduceLogMapper {
 
     ProduceLog selectByPrimaryKey(Integer id);
 
-    int updateByPrimaryKeySelective(ProduceLog record);
+    List<ProduceLog> selectByOrderKey(Integer oid, Integer process);
 
-    int updateByPrimaryKeyWithBLOBs(ProduceLog record);
+    int updateByPrimaryKeySelective(ProduceLog record);
 
     int updateByPrimaryKey(ProduceLog record);
 }

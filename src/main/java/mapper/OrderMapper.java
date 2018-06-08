@@ -17,7 +17,10 @@ public interface OrderMapper {
     @Select("select * from atb_order where process=#{process} order by id desc")
     List<Order> selectByProcess(Integer process);
 
+    Order selectByState(Integer process);
+
     int updateByPrimaryKeySelective(Order record);
 
     int updateByPrimaryKey(Order record);
+
 }
