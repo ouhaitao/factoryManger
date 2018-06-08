@@ -76,7 +76,14 @@ li{
     background-color: rgb(232,237,234);
 }
 /*head_nav end*/
+.line_label{
+    width: 80%;
+    height: 35px;
+    line-height: 35px;
+    font-size: 18px;
+    font-weight: 300;
 
+}
 /*bottom_container start*/
 
     /*left_nav start*/
@@ -197,7 +204,7 @@ li{
 
 .page_produce{
     width: 100%;
-    display: none;
+    /*display: none;*/
 }
 .order_data{
     width: 100%;
@@ -227,8 +234,8 @@ li{
 }
 
 .btn_group{
-    float: right;
-    margin-right: 5px;
+    /*float: right;*/
+    margin-left: 5px;
 }
 
 .order_log{
@@ -242,7 +249,7 @@ li{
 .malfunction{
     width: 100%;
 
-    display: none;
+    /*display: none;*/
     height: auto;
     /*background-color: white;*/
     /*padding-bottom: 50px;*/
@@ -257,17 +264,17 @@ li{
 
 .employee{
     width: 100%;
-    display: none;
+    /*display: none;*/
     /*background-color: white;*/
 }
 .quality{
     width: 100%;
-    display: none;
+    /*display: none;*/
 }
 
 .data{
     width: 100%;
-    display: none;
+    /*display: none;*/
 }
 
     /*right_contariner end*/

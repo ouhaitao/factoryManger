@@ -1,3 +1,8 @@
+$(function () {
+    var mTable=new malTable();
+    mTable.Init();
+})
+
 window.operateEvents = {
     'click #produce': function (e, value, row, index) {
         if (!confirm("确认投入生产？"))
@@ -28,7 +33,7 @@ var malTable = function () {
     var oTableInit = {};
     //初始化Table
     oTableInit.Init = function () {
-        $('#mal_table').bootstrapTable({
+        $('#hit_table').bootstrapTable({
             url: '/order/all',         //请求后台的URL（*）
             method: 'get',                      //请求方式（*）
             toolbar: '#toolbar',                //工具按钮用哪个容器

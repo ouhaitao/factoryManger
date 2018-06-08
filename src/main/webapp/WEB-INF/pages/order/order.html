@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="console">
+<head th:include="console :: header">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<body>
+<div class="head_nav">
+    <div th:include="console :: top_nav" >
+        <h2>这里显示专属本页面的内容</h2>
+    </div>
+</div>
+
+<div class="bottom_container">
+    <div class="left_nav">
+        <div th:include="console :: left_nav" th:remove="tag">
+            <h2>这里显示专属本页面的内容</h2>
+        </div>
+    </div>
+    <div class="right_container">
+        <div class="box_produce">
+            <div class="order_data">
+                <div class="table-responsive">
+                    <table class="table table-striped ">
+                        <tr>
+                            <th>订单号</th>
+                            <th>尺寸</th>
+                            <th>需求数量</th>
+                            <th>已产数量</th>
+                            <th>开始时间</th>
+                            <th>预计完成时间</th>
+                            <th>订单状态</th>
+                            <th>生产进度</th>
+                        </tr>
+                        <tr>
+                            <th>1002156415</th>
+                            <th>大号</th>
+                            <th>10000</th>
+                            <th>5000</th>
+                            <th>2018-2-12</th>
+                            <th>2018-2-12</th>
+                            <th>生产中</th>
+                            <th>50%</th>
+
+                        </tr>
+                    </table>
+                </div><!-- table -->
+
+            </div><!-- order data-->
+
+            <div class="data_form" style="width: 50%;height: auto; float: left;">
+                <div class="box1" style="width: auto;height:auto;overflow: auto;float: left;">
+                    <div id="main" style="width: 400px;height:250px;float: left"></div>
+                </div>
+
+                <div class="box1" style="width: auto;height:auto;overflow: auto;float: left;">
+                    <div id="produce_line"style="width: 400px;height:200px;float: left"></div>
+                </div>
+            </div>
+
+            <div class="operator">
+                <a href="#"><button class="btn btn-default">物料管理</button> </a>
+                <a href="#"><button class="btn btn-default">提交进度</button></a>
+                <a href="#"><button class="btn btn-default">生产日志</button> </a>
+                <a href="#"><button class="btn btn-default">申请质检</button> </a>
+                <a href="#"><button class="btn btn-default">产品入库</button> </a>
+            </div>
+        </div><!-- produce -->
+
+    </div>
+</div>
+</body>
+</body>
+</html>

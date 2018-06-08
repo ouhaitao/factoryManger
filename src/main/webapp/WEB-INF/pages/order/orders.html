@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="console">
+<head th:include="console :: header">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<body>
+<div class="head_nav">
+    <div th:include="console :: top_nav" >
+        <h2>这里显示专属本页面的内容</h2>
+    </div>
+</div>
+
+<div class="bottom_container">
+    <div class="left_nav">
+        <div th:include="console :: left_nav" th:remove="tag">
+            <h2>这里显示专属本页面的内容</h2>
+        </div>
+    </div>
+    <div class="right_container">
+        <div class="page_table">
+            <div class="search_order">
+                <div class="col-lg-4">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="订单号、关键字">
+                        <span class="input-group-btn">
+						<button class="btn btn-default" type="button">
+							查询
+						</button>
+					    </span>
+                    </div><!-- /input-group -->
+                </div><!-- /.col-lg-6 -->
+            </div><!-- search_order -->
+            <table class="order_list"></table>
+        </div><!-- order_table-->
+    </div>
+</div>
+</body>
+</body>
+</html>

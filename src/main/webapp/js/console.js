@@ -24,9 +24,9 @@ $(function () {
     })
     $("#malfunction").click(function () {
         hide();
-        $(".malfunction").css('display','block');
-        var table=new malTable();
-        table.Init();
+        // $(".malfunction").css('display','block');
+        // var table=new malTable();
+        // table.Init();
     })
     $("#employee").click(function () {
         hide();

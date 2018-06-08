@@ -1,36 +1,40 @@
 $(function () {
-   //  var a=new Date();
-   // // var b=new FormData("yyyy-MM--dd hh:mm:ss");
-   //      var c=getNowFormatDate();
-   //  //alert(c);
-    var logsTable=new orderLogTable();
-    logsTable.Init();
+    var matTable = new materialTable();
+    matTable.Init();
 })
 
-function getNowFormatDate() {
-    var date = new Date();
-    var seperator1 = "-";
-    var seperator2 = ":";
-    var month = date.getMonth() + 1;
-    var strDate = date.getDate();
-    if (month >= 1 && month <= 9) {
-        month = "0" + month;
+window.operateEvents = {
+    'click #produce': function (e, value, row, index) {
+        if (!confirm("确认投入生产？"))
+            return false;
+        $.ajax({
+            type: "update", //ajax delete方式请求
+            url: "/order/state",
+            dataType: "text",
+            data: {
+                "id": row.id,
+                "state": "",
+            },
+            success: function (data) {
+                if (data == "TRUE") {
+                    //处理成功
+                }else{
+                    //处理失败
+                }
+            },
+            error: function (data) {
+                alert("请求失败");
+            }
+        });
     }
-    if (strDate >= 0 && strDate <= 9) {
-        strDate = "0" + strDate;
-    }
-    var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
-        + " " + date.getHours() + seperator2 + date.getMinutes()
-        + seperator2 + date.getSeconds();
-    return currentdate;
-}
+};
 
-var orderLogTable = function () {
+var materialTable = function () {
     var oTableInit = {};
     //初始化Table
     oTableInit.Init = function () {
-        $('#logs_table').bootstrapTable({
-            url: '/order/all',         //请求后台的URL（*）
+        $('#material_table').bootstrapTable({
+            url: '/api/order/all',         //请求后台的URL（*）
             method: 'get',                      //请求方式（*）
             toolbar: '#toolbar',                //工具按钮用哪个容器
             striped: true,                      //是否显示行间隔色
@@ -60,37 +64,37 @@ var orderLogTable = function () {
             editable: true,
             columns: [
                 {
-                    field: 'oid',
+                    field: 'id',
                     visible: true,
                     sortable: true,
                     title: '订单号'
                 },
                 {
-                    field: 'date',
-                    title: '时间',
+                    field: 'size',
+                    title: '原料ID',
                 },
                 {
-                    field: 'type',
-                    title: '日志类型',
+                    field: 'productNum',
+                    title: '管理员Id',
                     editable: true,
                     //formatter:blog_url
 
                 }, {
-                    field: 'information',
-                    title: '内容'
+                    field: 'date',
+                    title: '时间'
 
                 }, {
-                    field: 'result',
-                    title: '处理结果',
+                    field: 'state',
+                    title: '操作类型',
 
                 },
-                // {
-                //     field: 'operate',
-                //     title: '操作',
-                //     events: 'operateEvents',
-                //     formatter: edit_btn//自定义方法，添加编辑按钮
-                //
-                // }
+                {
+                    field: 'operate',
+                    title: '数量',
+                    events: 'operateEvents',
+                    formatter: edit_btn//自定义方法，添加编辑按钮
+
+                }
 
             ],
             // rowStyle: function (row, index) {
@@ -117,3 +121,15 @@ var orderLogTable = function () {
     // };
     return oTableInit;
 };
+
+function edit_btn(value, row, index) {
+    return '<button class="btn btn-default" id="produce"><a href="javascript:;" class=""  data-toggle="modal" data-target="#myModal">生产</a></button>';
+}
+
+function delete_btn() {
+    return '<a  href="javascript:;" class="delete">删除</a>';
+}
+
+function blog_url(value, row, index) {
+    return '<a href="' + '/u/' + row.uid + '/p/' + row.bid + '" style="color: #0f0f0f">' + row.btitle + '</a>';
+}

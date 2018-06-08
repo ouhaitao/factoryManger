@@ -1,16 +1,24 @@
 package controller;
 
 import com.alibaba.fastjson.JSON;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import po.ExceptionList;
 import po.RepairList;
+import service.ExceptionService;
+import service.RepairService;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
 public class ExceptionController {
+    @Autowired
+    ExceptionService exceptionService;
+    @Autowired
+    RepairService repairService;
 
     /**
      * 获取报修单
@@ -20,8 +28,9 @@ public class ExceptionController {
     @GetMapping(value = "/department/{process}/repairlist")
     public String apiGetRepairlist(@PathVariable("process")String process){
         List<RepairList> list=null;
-
-
+        Map<String,String> map=new HashMap<>();
+        map.put("process",process);
+        list=repairService.selectRepair(map);
         return JSON.toJSONString(list);
     }
 
@@ -33,8 +42,9 @@ public class ExceptionController {
     @GetMapping(value = "/department/{process}/exceptionlist")
     public String apiGetExceptionlist(@PathVariable("process")String process){
         List<ExceptionList> list=null;
-
-
+        Map<String,String> map=new HashMap<>();
+        map.put("process",process);
+        list=exceptionService.selectException(map);
         return JSON.toJSONString(list);
     }
 

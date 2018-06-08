@@ -1,3 +1,7 @@
+$(function () {
+initDataPic();
+})
+
 function initDataPic() {
     // 基于准备好的dom，初始化echarts实例
     var myChart = echarts.init(document.getElementById('main'));
@@ -21,9 +25,28 @@ function initDataPic() {
             data: [5, 20, 36, 10, 10, 20,30]
         }]
     };
-
-// 使用刚指定的配置项和数据显示图表。
+    // 使用刚指定的配置项和数据显示图表。
     myChart.setOption(option);
+
+
+    var produce_line=echarts.init(document.getElementById('produce_line'));
+    option = {
+        xAxis: {
+            type: 'category',
+            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [{
+            data: [820, 932, 901, 934, 1290, 1330, 1320],
+            type: 'line'
+        }]
+    };
+    produce_line.setOption(option);
+
+
+
 
     var myChart2 = echarts.init(document.getElementById('exception'));
     option = {
@@ -47,19 +70,5 @@ function initDataPic() {
     };
     myChart2.setOption(option);
 
-    var produce_line=echarts.init(document.getElementById('produce_line'));
-    option = {
-        xAxis: {
-            type: 'category',
-            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-        },
-        yAxis: {
-            type: 'value'
-        },
-        series: [{
-            data: [820, 932, 901, 934, 1290, 1330, 1320],
-            type: 'line'
-        }]
-    };
-    produce_line.setOption(option);
+
 }

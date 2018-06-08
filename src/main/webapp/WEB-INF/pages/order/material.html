@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="console">
+<head th:include="console :: header">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<body>
+<div class="head_nav">
+    <div th:include="console :: top_nav" >
+        <h2>这里显示专属本页面的内容</h2>
+    </div>
+</div>
+
+<div class="bottom_container">
+    <div class="left_nav">
+        <div th:include="console :: left_nav" th:remove="tag">
+            <h2>这里显示专属本页面的内容</h2>
+        </div>
+    </div>
+    <div class="right_container">
+        <div id="more" class="collapse in">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title" style="font-weight: bold">原料管理</h3>
+                </div>
+                <table class="table table-bordered">
+                    <tr>
+                        <th>订单ID</th>
+                        <th>原料ID</th>
+                        <th>预期数量</th>
+                        <th>领取数量</th>
+                        <th>已用数量</th>
+                        <th>废料数量</th>
+                        <th>剩余数量</th>
+                    </tr>
+                    <tr>
+                        <th>1008611</th>
+                        <th>1008612</th>
+                        <th>50000</th>
+                        <th>50000</th>
+                        <th>30000</th>
+                        <th>10000</th>
+                        <th>10000</th>
+                    </tr>
+                </table>
+            </div>
+            <div class="btn_group">
+                <button class="btn btn-default">申请补料</button>
+                <button class="btn btn-info">申请退料</button>
+                <button class="btn btn-danger">处理废料</button>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title" style="font-weight: bold">物料处理记录
+                </h3>
+            </div>
+            <table id="material_table"></table>
+        </div>
+    </div>
+</div>
+</body>
+</body>
+</html>

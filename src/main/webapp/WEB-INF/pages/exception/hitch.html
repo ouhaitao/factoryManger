@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="console">
+<head th:include="console :: header">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<body>
+<div class="head_nav">
+    <div th:include="console :: top_nav" >
+        <h2>这里显示专属本页面的内容</h2>
+    </div>
+</div>
+
+<div class="bottom_container">
+    <div class="left_nav">
+        <div th:include="console :: left_nav" th:remove="tag">
+            <h2>这里显示专属本页面的内容</h2>
+        </div>
+    </div>
+    <div class="right_container">
+        <div class="malfunction">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title" style="font-weight: bold">填写报修单
+                        <a data-toggle="collapse"
+                           data-target="#mal_more" class="menu_label" style="float: right;">
+                                <span
+                                        class="more_span icon-caret-down"></span>
+
+                        </a>
+                    </h3>
+
+                </div>
+                <div id="mal_more" class="collapse in">
+
+                    <table class="table table-bordered">
+                        <tr style="width: 100%">
+                            <th>申请部门</th>
+                            <th>管理员</th>
+                            <th>联系方式</th>
+                            <th>申报时间</th>
+                        </tr>
+
+                        <tr>
+                            <th>印刷部</th>
+                            <th><input type="input"/></th>
+                            <th><input type="input"/></th>
+                            <th>2018-05-14</th>
+                        </tr>
+                        <tr>
+                            <th>故障设备</th>
+                            <th>简要情况描述</th>
+                            <th>详细描述</th>
+                            <th>备注信息</th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default dropdown-toggle"
+                                            data-toggle="dropdown">
+                                        默认 <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#">印刷机</a></li>
+                                        <li><a href="#">传送带</a></li>
+                                        <li><a href="#">控制器</a></li>
+                                    </ul>
+                                </div>
+                            </th>
+                            <th><textarea></textarea></th>
+                            <th><textarea></textarea></th>
+                            <th><textarea></textarea></th>
+                        </tr>
+                    </table>
+                    <div style="width: 100%;height: auto;overflow: auto; padding:10px">
+                        <button class="btn btn-warning" id="sub_malfunction" style="float: right">提交报修单</button>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title" style="font-weight: bold">处理结果
+                    </h3>
+                </div>
+                <table id="hit_table"></table>
+            </div>
+        </div><!-- malfunction -->
+    </div>
+</div>
+</body>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="console">
+<head th:include="console :: header">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<body>
+<div class="head_nav">
+    <div th:include="console :: top_nav" >
+        <h2>这里显示专属本页面的内容</h2>
+    </div>
+</div>
+
+<div class="bottom_container">
+    <div class="left_nav">
+        <div th:include="console :: left_nav" th:remove="tag">
+            <h2>这里显示专属本页面的内容</h2>
+        </div>
+    </div>
+    <div class="right_container">
+        <div class="quality">
+            <div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title" style="font-weight: bold">当前质检
+                        </h3>
+                    </div>
+                    <table class="table">
+                        <tr>
+                            <th><b>质检单号：</b>1089120</th>
+                            <th><b>订单号：</b>2102020</th>
+                            <th><b>申报部门：</b>印刷部</th>
+                            <th><b>质检工序：</b>印刷</th>
+                            <th><b>申报时间：</b>2018-2-12</th>
+                        </tr>
+                        <tr>
+                            <th><b>采样数量：</b>150000</th>
+                            <th>质检状态：已完成</th>
+                            <th>质检结果：不合格</th>
+                            <th>废品量：15000</th>
+                            <th>废品率：10%</th>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th><button class="btn btn-default">复产订单</button></th>
+
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title" style="font-weight: bold">历史记录
+                    </h3>
+                </div>
+                <table id="qua_table"></table>
+            </div>
+        </div><!-- quality -->
+    </div>
+</div>
+</body>
+</body>
+</html>

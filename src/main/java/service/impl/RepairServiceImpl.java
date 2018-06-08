@@ -1,11 +1,13 @@
 package service.impl;
 
+import org.springframework.stereotype.Service;
 import po.RepairList;
 import service.RepairService;
 
 import java.util.List;
 import java.util.Map;
 
+@Service
 public class RepairServiceImpl implements RepairService {
     @Override
     public boolean insertRepair(RepairList repairList) {

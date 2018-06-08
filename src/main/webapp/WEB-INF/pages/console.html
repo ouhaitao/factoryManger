@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="header">
     <meta charset="UTF-8">
     <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
@@ -20,29 +20,32 @@
     <script type="text/javascript" src="/js/quality.js"></script>
     <script type="text/javascript" src="/js/echarts.min.js"></script>
     <script type="text/javascript" src="/js/data.js"></script>
+
+    <script type="text/javascript" src="/js/materialTable.js"></script>
     <title>Title</title>
 </head>
 <body>
 
 <!--顶部导航栏-->
-<div class="head_nav">
+<div class="head_nav" th:fragment="top_nav">
     <div class="head_item" id="admin_name"> 1850252892</div>
     <div class="head_item" id="admin_role">印刷管理员</div>
-    <div class="head_item" id="work_title">全部订单</div>
+    <!--/*@thymesVar id="item" type=""*/-->
+    <div class="head_item" id="work_title" th:text="${item}">全部订单</div>
 </div><!-- head_nav-->
 
 <!--工作区容器-->
 <div class="bottom_container">
 
     <!--左边功能导航栏-->
-    <div class="left_nav">
-        <div class="left_top">
-            <button class="btn btn-default btn_log">提交生产进度</button>
-        </div>
+    <div class="left_nav" th:fragment="left_nav">
+        <!--<div class="left_top">-->
+            <!--<button class="btn btn-default btn_log">提交生产进度</button>-->
+        <!--</div>-->
         <div class="line_top"></div>
         <div class="line_bottom"></div>
 
-        <div class="left_menu">
+        <div class="left_menu"  >
             <div class="order_admin">
                 <span class="ico icon-file-alt "></span>
                 <a href="javascript:;" data-toggle="collapse"
@@ -55,8 +58,11 @@
                     <div class="line_bottom"></div>
                     <ul>
                         <!--<li><a href="javascript:;">全部订单</a></li>-->
-                        <li><a href="javascript:;" id="order_wait">待处理订单</a></li>
-                        <li><a href="javascript:;" id="order_produce">生产中订单</a></li>
+                        <li><a href="/orders" id="order_wait">待处理订单</a></li>
+                        <li><a href="/order" id="order_produce">生产中订单</a></li>
+                        <li><a href="/quality" id="quality">产品质检</a></li>
+                        <li><a href="/material" id="admin_material">原料管理</a></li>
+                        <li><a href="/logs" id="produce_log">生产日志</a></li>
                     </ul>
                 </div>
             </div>
@@ -71,9 +77,9 @@
                     <div class="line_top"></div>
                     <div class="line_bottom"></div>
                     <ul>
-                        <li><a href="javascript:;" id="malfunction">机械故障</a></li>
-                        <li><a href="javascript:;" id="employee">人为异常</a></li>
-                        <li><a href="javascript:;" id="quality">产品质检</a></li>
+                        <li><a href="/hitch" id="malfunction">机械故障</a></li>
+                        <li><a href="/operator" id="except">操作异常</a></li>
+                        <li><a href="/employee" id="employee">人事变动</a> </li>
                     </ul>
                 </div>
             </div>

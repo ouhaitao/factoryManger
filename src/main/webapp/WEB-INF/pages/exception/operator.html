@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="console">
+<head th:include="console :: header">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<body>
+<div class="head_nav">
+    <div th:include="console :: top_nav" >
+        <h2>这里显示专属本页面的内容</h2>
+    </div>
+</div>
+
+<div class="bottom_container">
+    <div class="left_nav">
+        <div th:include="console :: left_nav" th:remove="tag">
+            <h2>这里显示专属本页面的内容</h2>
+        </div>
+    </div>
+    <div class="right_container">
+        <div class="employee">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title" style="font-weight: bold">异常报告
+                        <a data-toggle="collapse"
+                           data-target="#emp_more" class="menu_label" style="float: right;">
+                                <span
+                                        class="more_span icon-caret-down"></span>
+
+                        </a>
+                    </h3>
+
+                </div>
+                <div id="emp_more" class="collapse in">
+
+                    <table class="table table-bordered">
+                        <tr style="width: 100%">
+                            <th>所属部门</th>
+                            <th>部门主管</th>
+                            <th>联系方式</th>
+                            <th>员工姓名</th>
+                            <th>员工工号</th>
+                        </tr>
+
+                        <tr>
+                            <th>印刷部</th>
+                            <th><input type="input"/></th>
+                            <th><input type="input"/></th>
+                            <th><input type="input"/></th>
+                            <th><input type="input"/></th>
+                        </tr>
+                        <tr>
+                            <th>提交时间</th>
+                            <th>异常类型</th>
+                            <th>是否停工</th>
+                            <th>简要情况描述</th>
+                            <th>详细描述</th>
+
+                        </tr>
+                        <tr>
+                            <th>2018-02-12</th>
+                            <th>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default dropdown-toggle"
+                                            data-toggle="dropdown">
+                                        默认 <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#">操作错误</a></li>
+                                    </ul>
+                                </div>
+                            </th>
+
+                            <th>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default dropdown-toggle"
+                                            data-toggle="dropdown">
+                                        不需要 <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#">需要</a></li>
+                                        <li><a href="#">不需要</a></li>
+                                    </ul>
+                                </div>
+                            </th>
+                            <th><textarea></textarea></th>
+                            <th><textarea></textarea></th>
+                        </tr>
+                    </table>
+                    <div style="width: 100%;height: auto;overflow: auto; padding: 10px">
+                        <button class="btn btn-warning" id="sub_employee" style="float: right;">提交报告</button>
+                    </div>
+                </div>
+            </div><!--form panel -->
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title" style="font-weight: bold">处理结果
+                    </h3>
+                </div>
+                <table id="emp_table"></table>
+            </div>
+        </div><!-- employee -->
+    </div>
+</div>
+</body>
+</body>
+</html>
