@@ -12,7 +12,7 @@ interface Rate{
 public class OrderModel {
     private int id;//订单id
     private int size;//产品型号
-    private int productNum;//产品数量
+    private int productnum;//产品数量
     private String rate;//产品进度
   //  private String mname;
     private int predict;
@@ -23,7 +23,7 @@ public class OrderModel {
     public OrderModel(Order order, Material material){
         this.id=order.getId();
         this.size=order.getSize();
-        this.productNum=order.getProductNum();
+        this.productnum=order.getProductNum();
         Rate r;
         r=(a,b)->{
             return a/b*100+"%";
@@ -52,11 +52,11 @@ public class OrderModel {
     }
 
     public int getProductNum() {
-        return productNum;
+        return productnum;
     }
 
     public void setProductNum(int productNum) {
-        this.productNum = productNum;
+        this.productnum = productNum;
     }
 
     public String getRate() {

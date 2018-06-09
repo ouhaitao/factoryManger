@@ -4,22 +4,22 @@ package po;
  * 异常报告单
  */
 public class ExceptionList {
-    private int id;//报告单id
-    private int oid;//订单id
+    private Integer id;//报告单id
+    private Integer oid;//订单id
     private String submit;//申报部门
-    private int uid;//管理员id
+    private Integer uid;//管理员id
     private String phone;//联系方式
     private String empname;//员工姓名
-    private int empid;//员工id
+    private Integer empid;//员工id
     private String date;//时间
-    private int type;//类型
-    private int pause;//是否导致订单停工
+    private Integer type;//类型
+    private Integer pause;//是否导致订单停工
     private String summary;//简介
     private String info;//描述
     private String handle;//处理部门
     private String result;//处理结果
 
-    public ExceptionList(int id, int oid, String submit, int uid, String phone, String empname, int empid, String date, int type, int pause, String summary, String info, String handle, String result) {
+    public ExceptionList(Integer id, Integer oid, String submit, Integer uid, String phone, String empname, Integer empid, String date, Integer type, Integer pause, String summary, String info, String handle, String result) {
         this.id = id;
         this.oid = oid;
         this.submit = submit;
@@ -39,19 +39,19 @@ public class ExceptionList {
     public ExceptionList() {
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getOid() {
+    public Integer getOid() {
         return oid;
     }
 
-    public void setOid(int oid) {
+    public void setOid(Integer oid) {
         this.oid = oid;
     }
 
@@ -63,11 +63,11 @@ public class ExceptionList {
         this.submit = submit;
     }
 
-    public int getUid() {
+    public Integer getUid() {
         return uid;
     }
 
-    public void setUid(int uid) {
+    public void setUid(Integer uid) {
         this.uid = uid;
     }
 
@@ -87,11 +87,11 @@ public class ExceptionList {
         this.empname = empname;
     }
 
-    public int getEmpid() {
+    public Integer getEmpid() {
         return empid;
     }
 
-    public void setEmpid(int empid) {
+    public void setEmpid(Integer empid) {
         this.empid = empid;
     }
 
@@ -103,19 +103,19 @@ public class ExceptionList {
         this.date = date;
     }
 
-    public int getType() {
+    public Integer getType() {
         return type;
     }
 
-    public void setType(int type) {
+    public void setType(Integer type) {
         this.type = type;
     }
 
-    public int getpause() {
+    public Integer getpause() {
         return pause;
     }
 
-    public void setpause(int pause) {
+    public void setpause(Integer pause) {
         this.pause = pause;
     }
 

@@ -5,13 +5,13 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="console">
 <head th:include="console :: header">
-    <meta charset="UTF-8">
-    <title>Title</title>
 </head>
+
 <body>
-<body>
+<script type="text/javascript" src="/js/orderAllTable.js"></script>
+
 <div class="head_nav">
-    <div th:include="console :: top_nav" >
+    <div th:include="console :: top_nav">
         <h2>这里显示专属本页面的内容</h2>
     </div>
 </div>
@@ -40,6 +40,5 @@
         </div><!-- order_table-->
     </div>
 </div>
-</body>
 </body>
 </html>

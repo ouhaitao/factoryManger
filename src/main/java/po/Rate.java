@@ -1,35 +1,35 @@
 package po;
 
 public class Rate {
-    private int id;//订单id
-    private int process;//流程
+    private Integer id;//订单id
+    private Integer process;//流程
     private String date;//日期
-    private int produce;//生产数量
+    private Integer produce;//生产数量
 
    public Rate(){
 
    }
 
-    public Rate(int id, int process, String date, int produce) {
+    public Rate(Integer id, Integer process, String date, Integer produce) {
         this.id = id;
         this.process = process;
         this.date = date;
         this.produce = produce;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getProcess() {
+    public Integer getProcess() {
         return process;
     }
 
-    public void setProcess(int process) {
+    public void setProcess(Integer process) {
         this.process = process;
     }
 
@@ -41,11 +41,11 @@ public class Rate {
         this.date = date;
     }
 
-    public int getProduce() {
+    public Integer getProduce() {
         return produce;
     }
 
-    public void setProduce(int produce) {
+    public void setProduce(Integer produce) {
         this.produce = produce;
     }
 

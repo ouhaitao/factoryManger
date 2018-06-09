@@ -9,52 +9,58 @@ import java.util.Map;
 public interface OrderService {
 
 	/**
-	 * ´´½¨Ò»¸öĞÂµÄ¶©µ¥£¬¶©µ¥½ø¶ÈÎªµÈ´ıÓ¡Ë¢£¨process=0£¬state=-1£©
-	 * ´´½¨¶©µ¥Ê±Éú³ÉÏàÓ¦µÄÔ­ÁÏ±íÊı¾İ£¨Material£©
+	 * åˆ›å»ºä¸€ä¸ªæ–°çš„è®¢å•ï¼Œè®¢å•è¿›åº¦ä¸ºç­‰å¾…å°åˆ·ï¼ˆprocess=0ï¼Œstate=-1ï¼‰
+	 * åˆ›å»ºè®¢å•æ—¶ç”Ÿæˆç›¸åº”çš„åŸæ–™è¡¨æ•°æ®ï¼ˆMaterialï¼‰
 	 * @param o
 	 * @return
 	 */
 	boolean createOrder(Order o);
 
 	/**
-	 * É¾³ıÒ»¸ö¶©µ¥
+	 * åˆ é™¤ä¸€ä¸ªè®¢å•
 	 * @param orderId
 	 * @return
 	 */
 	boolean deleteOrder(int orderId);
 
 	/**
-	 * »ñÈ¡µ±Ç°Á÷³ÌÏÂµÄËùÓĞ¶©µ¥
-	 * @param process Á÷³ÌºÅ
+	 * è·å–å½“å‰æµç¨‹ä¸‹çš„æ‰€æœ‰è®¢å•
+	 * @param process æµç¨‹å·
 	 * @return
 	 */
 	List<Order> findOrderByProcess(int process);
 
 	/**
-	 * ¸ù¾İÁ÷³ÌºÅprocessºÍstate£¡=-1£¨¼´ÔÚÉú²úÁ÷³ÌÖĞµÄ¶©µ¥ĞÅÏ¢£©²éÑ¯¶©µ¥µÄÏà¹ØĞÅÏ¢
-	 * @param process Á÷³ÌºÅ
+	 * æ ¹æ®æµç¨‹å·processå’Œstateï¼=-1ï¼ˆå³åœ¨ç”Ÿäº§æµç¨‹ä¸­çš„è®¢å•ä¿¡æ¯ï¼‰æŸ¥è¯¢è®¢å•çš„ç›¸å…³ä¿¡æ¯
+	 * @param process æµç¨‹å·
 	 * @return
 	 */
 	OrderModel selectOrderModel(int process);
 
 	/**
-	 * ĞŞ¸Ä¶©µ¥×´Ì¬
-	 * µ±¶©µ¥Âú×ãÈë¿âÌõ¼şºó½«¶©µ¥Á÷³Ì½ø¶È£¨process£©¼ÓÒ»,¼´¶©µ¥½øÈëÏÂÒ»¸öÁ÷³Ì
-	 * ÏêÇé²Î¿¼controller
+	 * ä¿®æ”¹è®¢å•çŠ¶æ€
+	 * å½“è®¢å•æ»¡è¶³å…¥åº“æ¡ä»¶åå°†è®¢å•æµç¨‹è¿›åº¦ï¼ˆprocessï¼‰åŠ ä¸€,å³è®¢å•è¿›å…¥ä¸‹ä¸€ä¸ªæµç¨‹
+	 * è¯¦æƒ…å‚è€ƒcontroller
 	 * @param m
 	 * @return
 	 */
 	boolean updateOrderState (Map<String, String> m);
 
+	String produceOrder(Map<String,String> m);
+
+	String qualityOrder(Map<String,String> m);
+
+	String storeOrder(Map<String,String> m);
+
 	/**
-	 * ¸üĞÂÉú²ú½ø¶È
-	 * @param map ²Î¿¼controller
+	 * æ›´æ–°ç”Ÿäº§è¿›åº¦
+	 * @param map å‚è€ƒcontroller
 	 * @return
 	 */
 	boolean updateRate(Map <String,String> map);
 
 	/**
-	 * ¸üĞÂ¶©µ¥µÄÔ­ÁÏĞÅÏ¢£¬ÏêÇé¼ûcontroller
+	 * æ›´æ–°è®¢å•çš„åŸæ–™ä¿¡æ¯ï¼Œè¯¦æƒ…è§controller
 	 * @param map
 	 * @return
 	 */

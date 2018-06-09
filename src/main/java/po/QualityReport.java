@@ -4,17 +4,17 @@ package po;
  * 质检报告
  */
 public class QualityReport {
-    private int id;//质检单号
-    private int oid;//订单id
+    private Integer id;//质检单号
+    private Integer oid;//订单id
     private String submit;//提交部门
     private String date;//时间
-    private int sample;//抽样数量
-    private int state;//质检状态
-    private int result;//质检结果
-    private int scrap;//不合格数量
+    private Integer sample;//抽样数量
+    private Integer state;//质检状态
+    private Integer result;//质检结果
+    private Integer scrap;//不合格数量
     private String info;
 
-    public QualityReport(int id, int oid, String submit, String date, int sample, int state, int result, int scrap,String info) {
+    public QualityReport(Integer id, Integer oid, String submit, String date, Integer sample, Integer state, Integer result, Integer scrap,String info) {
         this.id = id;
         this.oid = oid;
         this.submit = submit;
@@ -29,19 +29,19 @@ public class QualityReport {
     public QualityReport() {
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getOid() {
+    public Integer getOid() {
         return oid;
     }
 
-    public void setOid(int oid) {
+    public void setOid(Integer oid) {
         this.oid = oid;
     }
 
@@ -61,35 +61,35 @@ public class QualityReport {
         this.date = date;
     }
 
-    public int getSample() {
+    public Integer getSample() {
         return sample;
     }
 
-    public void setSample(int sample) {
+    public void setSample(Integer sample) {
         this.sample = sample;
     }
 
-    public int getState() {
+    public Integer getState() {
         return state;
     }
 
-    public void setState(int state) {
+    public void setState(Integer state) {
         this.state = state;
     }
 
-    public int getResult() {
+    public Integer getResult() {
         return result;
     }
 
-    public void setResult(int result) {
+    public void setResult(Integer result) {
         this.result = result;
     }
 
-    public int getScrap() {
+    public Integer getScrap() {
         return scrap;
     }
 
-    public void setScrap(int scrap) {
+    public void setScrap(Integer scrap) {
         this.scrap = scrap;
     }
 

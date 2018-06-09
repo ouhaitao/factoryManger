@@ -24,7 +24,7 @@ public class ResourceServerConfiguration  extends ResourceServerConfigurerAdapte
                 .requestMatchers().anyRequest()
                 .and().anonymous()
                 .and().authorizeRequests()
-                .antMatchers("/api/**").access("hasRole('ADMIN')")
+                //.antMatchers("/api/**").access("hasRole('ADMIN')")
               //  .antMatchers("/*/admin/**").access("hasRole('ADMIN')")
                 .antMatchers("/printing/**").access("hasRole('PRINTING')")
                 .antMatchers("/cut/**").access("hasRole('CUT')")

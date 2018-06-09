@@ -4,19 +4,19 @@ package po;
  * 报修单
  */
 public class RepairList {
-    private int id;//报修单id
+    private Integer id;//报修单id
     private String submit;//申报部门
-    private int uid;//管理员id
+    private Integer uid;//管理员id
     private String phone;//联系方式
     private String date;//申报时间
-    private int type;//故障类型
+    private Integer type;//故障类型
     private String summary;//故障简介
     private String info;//故障类容
     private String mark;//备注
     private String handle;//处理部门
     private String result;//处理结果
 
-    public RepairList(int id, String submit, int uid, String phone, String date, int type, String summary, String info, String mark, String handle, String result) {
+    public RepairList(Integer id, String submit, Integer uid, String phone, String date, Integer type, String summary, String info, String mark, String handle, String result) {
         this.id = id;
         this.submit = submit;
         this.uid = uid;
@@ -33,11 +33,11 @@ public class RepairList {
     public RepairList() {
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -49,11 +49,11 @@ public class RepairList {
         this.submit = submit;
     }
 
-    public int getUid() {
+    public Integer getUid() {
         return uid;
     }
 
-    public void setUid(int uid) {
+    public void setUid(Integer uid) {
         this.uid = uid;
     }
 
@@ -73,11 +73,11 @@ public class RepairList {
         this.date = date;
     }
 
-    public int getType() {
+    public Integer getType() {
         return type;
     }
 
-    public void setType(int type) {
+    public void setType(Integer type) {
         this.type = type;
     }
 

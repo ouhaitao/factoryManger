@@ -5,15 +5,15 @@ package po;
  * 记录每个订单各个流程的原料领取和使用情况
  */
 public class Material {
-    private int oid;//订单id
-    private int process;//订单当前流程
-    private int mid;//原料id（对应仓库id）
-    private int predict;//预计领取原料
-    private int reality;//实际领取的原料
-    private int consume;//已使用的原料
-    private int scrap;//废料
+    private Integer oid;//订单id
+    private Integer process;//订单当前流程
+    private Integer mid;//原料id（对应仓库id）
+    private Integer predict;//预计领取原料
+    private Integer reality;//实际领取的原料
+    private Integer consume;//已使用的原料
+    private Integer scrap;//废料
 
-    public Material(int oid, int process, int mid, int predict, int reality, int consume, int scrap) {
+    public Material(Integer oid, Integer process, Integer mid, Integer predict, Integer reality, Integer consume, Integer scrap) {
         this.oid = oid;
         this.process = process;
         this.mid = mid;
@@ -27,59 +27,59 @@ public class Material {
 
     }
 
-    public int getOid() {
+    public Integer getOid() {
         return oid;
     }
 
-    public void setOid(int oid) {
+    public void setOid(Integer oid) {
         this.oid = oid;
     }
 
-    public int getProcess() {
+    public Integer getProcess() {
         return process;
     }
 
-    public void setProcess(int process) {
+    public void setProcess(Integer process) {
         this.process = process;
     }
 
-    public int getMid() {
+    public Integer getMid() {
         return mid;
     }
 
-    public void setMid(int mid) {
+    public void setMid(Integer mid) {
         this.mid = mid;
     }
 
-    public int getPredict() {
+    public Integer getPredict() {
         return predict;
     }
 
-    public void setPredict(int predict) {
+    public void setPredict(Integer predict) {
         this.predict = predict;
     }
 
-    public int getReality() {
+    public Integer getReality() {
         return reality;
     }
 
-    public void setReality(int reality) {
+    public void setReality(Integer reality) {
         this.reality = reality;
     }
 
-    public int getConsume() {
+    public Integer getConsume() {
         return consume;
     }
 
-    public void setConsume(int consume) {
+    public void setConsume(Integer consume) {
         this.consume = consume;
     }
 
-    public int getScrap() {
+    public Integer getScrap() {
         return scrap;
     }
 
-    public void setScrap(int scrap) {
+    public void setScrap(Integer scrap) {
         this.scrap = scrap;
     }
 

@@ -5,9 +5,9 @@ package po;
  */
 public class ProduceLog {
     private int id;//日志id
-    private int oId;//订单id
+    private int oid;//订单id
     private int process;//订单流程
-    private int uId;//管理员id
+    private int uid;//管理员id
     private String date;//提交时间
 
     private int type;//日志类型
@@ -19,10 +19,10 @@ public class ProduceLog {
 
     }
 
-    public ProduceLog( int oId,int process,int uId, String date, int type, String information, String result) {
-        this.oId = oId;
+    public ProduceLog( int oid,int process,int uid, String date, int type, String information, String result) {
+        this.oid = oid;
         this.process=process;
-        this.uId = uId;
+        this.uid = uid;
         this.date = date;
         this.type = type;
         this.information = information;
@@ -46,19 +46,19 @@ public class ProduceLog {
     }
 
     public int getoId() {
-        return oId;
+        return oid;
     }
 
-    public void setoId(int oId) {
-        this.oId = oId;
+    public void setoId(int oid) {
+        this.oid = oid;
     }
 
     public int getuId() {
-        return uId;
+        return uid;
     }
 
-    public void setuId(int uId) {
-        this.uId = uId;
+    public void setuId(int uid) {
+        this.uid = uid;
     }
 
     public int getType() {
@@ -97,9 +97,9 @@ public class ProduceLog {
     public String toString() {
         return "ProduceLog{" +
                 "id='" + id + '\'' +
-                ", oId='" + oId + '\'' +
+                ", oid='" + oid + '\'' +
                 ", process=" + process +
-                ", uId='" + uId + '\'' +
+                ", uid='" + uid + '\'' +
                 ", date='" + date + '\'' +
                 ", type='" + type + '\'' +
                 ", information='" + information + '\'' +

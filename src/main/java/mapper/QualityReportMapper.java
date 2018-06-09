@@ -1,5 +1,7 @@
 package mapper;
 
+import org.apache.ibatis.annotations.Select;
+import org.springframework.data.repository.query.Param;
 import po.QualityReport;
 
 public interface QualityReportMapper {
@@ -10,6 +12,9 @@ public interface QualityReportMapper {
     int insertSelective(QualityReport record);
 
     QualityReport selectByPrimaryKey(Integer id);
+
+    @Select("select * from atb_qualityReport where oid=#{oid} and submit=#{submit}")
+    QualityReport selectByOrderId(@Param("oid") Integer oid,@Param("submit")String  submit);
 
     int updateByPrimaryKeySelective(QualityReport record);
 

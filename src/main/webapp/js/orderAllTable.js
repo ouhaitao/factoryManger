@@ -2,15 +2,19 @@ window.operateEvents = {
     'click #produce': function (e, value, row, index) {
         if (!confirm("确认投入生产？"))
             return false;
+        var id=row.id;
+        var url="/api/order/"+id+"/process/0/state";
         $.ajax({
-            type: "update", //ajax delete方式请求
-            url: "/order/state",
+            type: "put", //ajax delete方式请求
+            url: url,
             dataType: "text",
-            data: {
-                "id": row.id,
-                "state": "",
-            },
+            contentType:"application/json",
+            data: JSON.stringify({
+                "operate": "produce",
+                "uid":"1008610"
+            }),
             success: function (data) {
+                alert(data);
                 if (data == "TRUE") {
                     //处理成功
                 }else{
@@ -29,7 +33,7 @@ var allOrderTable = function () {
     //初始化Table
     oTableInit.Init = function () {
         $('.order_list').bootstrapTable({
-            url: '/api/order/all',         //请求后台的URL（*）
+            url: '/api/process/0/orders',         //请求后台的URL（*）
             method: 'get',                      //请求方式（*）
             toolbar: '#toolbar',                //工具按钮用哪个容器
             striped: true,                      //是否显示行间隔色
@@ -73,10 +77,6 @@ var allOrderTable = function () {
                     title: '数量',
                     editable: true,
                     //formatter:blog_url
-
-                }, {
-                    field: 'date',
-                    title: '发布日期'
 
                 }, {
                     field: 'state',

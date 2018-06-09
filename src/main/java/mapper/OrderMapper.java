@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Select;
 import po.Order;
 
 import java.util.List;
+import java.util.Map;
 
 public interface OrderMapper {
     int deleteByPrimaryKey(Integer id);
@@ -14,7 +15,7 @@ public interface OrderMapper {
 
     Order selectByPrimaryKey(Integer id);
 
-    @Select("select * from atb_order where process=#{process} order by id desc")
+    @Select("select * from atb_order where process=#{process}")
     List<Order> selectByProcess(Integer process);
 
     Order selectByState(Integer process);
@@ -23,4 +24,9 @@ public interface OrderMapper {
 
     int updateByPrimaryKey(Order record);
 
+    @Select("select * from atb_order where process=#{process} and state=#{state}")
+    Order selectOrderByMap(Map<String,Integer> map);
+
+    @Select("select * from atb_order where process=#{process} and state!=#{state}")
+    Order selectProduceOrder(Map<String,Integer> map);
 }

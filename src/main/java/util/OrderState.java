@@ -2,13 +2,27 @@ package util;
 
 public class OrderState {
 
-	/*
-	 * ¶©µ¥ÕıÔÚÄÄÒ»²½
-	 */
-	public static final int NOTSTART=-1;
-	public static final int PRODUCE=0;
-	public static final int PAUSE=-2;
-	public static final int QUALITY=1;
+    /*
+     * è®¢å•æ­£åœ¨å“ªä¸€æ­¥
+     */
+    public static final int NOTSTART = -1;
+    public static final int PRODUCE = 0;
+    public static final int PAUSE = -2;
+    public static final int QUALITY = 1;
 
+    public static String getState(int i) {
+        switch (i) {
+            case -1:
+                return "å¾…ç”Ÿäº§";
+            case 0:
+                return "ç”Ÿäº§";
+            case 1:
+                return "è´¨æ£€ä¸­";
+            case 2:
+                return "æš‚åœ";
+            default:
+                return "";
+        }
+    }
 
 }

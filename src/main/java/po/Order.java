@@ -2,73 +2,72 @@ package po;
 
 //订单
 public class Order {
-	private int size;//纸杯容量
-	private int productNum;//产品数量
+	private Integer size;//纸杯容量
+	private Integer productnum;//产品数量
 	
-	private int id;
-//	private HashMap<String, Integer> material;//key:原料 value:数量
-	private int process;//订单流程，订单处于的工艺流程，{"0":"印刷","1":"模切","2":"成型","3":"包装"}
-	private int state;//订单状态，未开始为-1，生产中为0，暂停为-2，质检为1
-	private int rate;//订单已完成数量
+	private Integer id;
+//	private HashMap<String, Integeregereger> material;//key:原料 value:数量
+	private Integer process;//订单流程，订单处于的工艺流程，{"0":"印刷","1":"模切","2":"成型","3":"包装"}
+	private Integer state;//订单状态，未开始为-1，生产中为0，暂停为-2，质检为1
+	private Integer rate;//订单已完成数量
 
 	public Order() {
 	}
 
-	public Order(int size, int productNum, int id,int process, int state, int rate) {
+	public Order(Integer size, Integer productnum,Integer process, Integer state, Integer rate) {
 		this.size = size;
-		this.productNum = productNum;
+		this.productnum = productnum;
 		this.process=process;
-		this.id = id;
 		this.state = state;
 		this.rate = rate;
 	}
 
-	public int getProcess() {
+	public Integer getProcess() {
 		return process;
 	}
 
-	public void setProcess(int process) {
+	public void setProcess(Integer process) {
 		this.process = process;
 	}
 
-	public int getSize() {
+	public Integer getSize() {
 		return size;
 	}
 
-	public void setSize(int size) {
+	public void setSize(Integer size) {
 		this.size = size;
 	}
 
-	public int getProductNum() {
-		return productNum;
+	public Integer getProductNum() {
+		return productnum;
 	}
 
-	public void setProductNum(int productNum) {
-		this.productNum = productNum;
+	public void setProductNum(Integer productNum) {
+		this.productnum = productNum;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
 
-	public int getState() {
+	public Integer getState() {
 		return state;
 	}
 
-	public void setState(int state) {
+	public void setState(Integer state) {
 		this.state = state;
 	}
 
-	public int getRate() {
+	public Integer getRate() {
 		return rate;
 	}
 
-	public void setRate(int rate) {
+	public void setRate(Integer rate) {
 		this.rate = rate;
 	}
 
@@ -77,7 +76,7 @@ public class Order {
 	 * @return
 	 */
 	public boolean isError(){
-		if (size<=0||productNum<=0||rate<0||rate>productNum||process<0||process>3||state<-2||state>1){
+		if (size<=0||productnum<=0||rate<0||rate>productnum||process<0||process>3||state<-2||state>1){
 			return true;
 		}
 		return false;
@@ -86,7 +85,7 @@ public class Order {
 	public String toString() {
 		return "Order{" +
 				"size=" + size +
-				", productNum=" + productNum +
+				", productNum=" + productnum +
 				", id=" + id +
 				", process=" + process +
 				", state=" + state +

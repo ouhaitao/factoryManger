@@ -25,13 +25,20 @@
   </delete>
 
   <insert id="insert" parameterType="po.Order" >
-    insert into atb_order (id, size, productnum, 
+    <selectKey keyProperty="id"  resultType="java.lang.Integer" keyColumn="id">
+      select LAST_INSERT_ID()
+    </selectKey>
+    insert into atb_order (size, productnum,
       process, state, rate)
-    values (#{id,jdbcType=INTEGER}, #{size,jdbcType=INTEGER}, #{productnum,jdbcType=INTEGER}, 
+    values (#{size,jdbcType=INTEGER}, #{productnum,jdbcType=INTEGER},
       #{process,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}, #{rate,jdbcType=INTEGER})
   </insert>
 
   <insert id="insertSelective" parameterType="po.Order" >
+    <selectKey keyProperty="id"  resultType="java.lang.Integer" keyColumn="id">
+      select LAST_INSERT_ID()
+    </selectKey>
+
     insert into atb_order
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -50,9 +57,10 @@
         state,
       </if>
       <if test="rate != null" >
-        rete,
+        rate,
       </if>
     </trim>
+
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=INTEGER},

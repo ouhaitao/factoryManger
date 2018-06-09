@@ -3,40 +3,40 @@ package po;
 //仓库
 public class Warehouse {
 
-	private int id;
-	private String materialType;//原料种类
-	private int stock;//库存
+	private Integer id;
+	private String materialtype;//原料种类
+	private Integer stock;//库存
 
 	public Warehouse() {
 	}
 
-	public Warehouse(int id, String materialType, int stock) {
+	public Warehouse(Integer id, String materialType, Integer stock) {
 		this.id = id;
-		this.materialType = materialType;
+		this.materialtype = materialType;
 		this.stock = stock;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
 	public String getMaterialType() {
-		return materialType;
+		return materialtype;
 	}
 
 	public void setMaterialType(String materialType) {
-		this.materialType = materialType;
+		this.materialtype = materialType;
 	}
 
-	public int getStock() {
+	public Integer getStock() {
 		return stock;
 	}
 
-	public void setStock(int stock) {
+	public void setStock(Integer stock) {
 		this.stock = stock;
 	}
 
@@ -44,7 +44,7 @@ public class Warehouse {
 	public String toString() {
 		return "Warehouse{" +
 				"id=" + id +
-				", materialType='" + materialType + '\'' +
+				", materialType='" + materialtype + '\'' +
 				", stock=" + stock +
 				'}';
 	}

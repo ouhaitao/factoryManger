@@ -1,27 +1,5 @@
 window.operateEvents = {
-    'click #produce': function (e, value, row, index) {
-        if (!confirm("确认投入生产？"))
-            return false;
-        $.ajax({
-            type: "update", //ajax delete方式请求
-            url: "/order/state",
-            dataType: "text",
-            data: {
-                "id": row.id,
-                "state": "",
-            },
-            success: function (data) {
-                if (data == "TRUE") {
-                    //处理成功
-                }else{
-                    //处理失败
-                }
-            },
-            error: function (data) {
-                alert("请求失败");
-            }
-        });
-    }
+
 };
 
 var empTable = function () {

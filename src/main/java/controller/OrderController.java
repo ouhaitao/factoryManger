@@ -1,10 +1,13 @@
 package controller;
 
 import com.alibaba.fastjson.JSON;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import po.Order;
 import po.ProduceLog;
 import po.Rate;
+import service.OrderService;
+import util.OrderState;
 
 import java.util.List;
 import java.util.Map;
@@ -12,6 +15,8 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api")
 public class OrderController {
+    @Autowired
+    OrderService orderService;
 
     /**
      * 获取该流程下等待处理的订单
@@ -21,7 +26,7 @@ public class OrderController {
     @GetMapping(value = "/process/{process}/orders")
     public String apiGetWaitOrderList(@PathVariable("process") int process){
         List<Order> list=null;
-
+        list=orderService.findOrderByProcess(process);
         return JSON.toJSONString(list);
     }
 
@@ -72,13 +77,18 @@ public class OrderController {
      * @param map {"operate":"要进行的操作",""}
      * @return 操作结果
      */
-    @PutMapping(value = "/order/{oid}/process/{process}/state")
+    @PutMapping(value = "/order/{oid}/process/{process}/state",produces = "application/text;charset=utf-8")
     public String apiUpdateOrderState(@PathVariable("oid")String id,@PathVariable("process")String process,@RequestBody Map<String,String> map){
-            String k=map.get("operate");
+        System.out.println(map.toString());
+        map.put("orderId",id);
+        map.put("process",process);
+        String result=null;
+        String k=map.get("operate");
             switch (k){
                 case "produce":
                     //订单投入生产（当前部门没有正在生产的订单才能生产新的订单）
-
+                    map.put("state",""+ OrderState.PRODUCE);
+                    result=orderService.produceOrder(map);
                     break;
                 case "quality":
                     //申请质检操作(必须生产进度100%的才能质检)
@@ -94,7 +104,7 @@ public class OrderController {
                     break;
 
             }
-        return "";
+        return result;
     }
 
     /**
