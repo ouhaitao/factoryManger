@@ -2,19 +2,24 @@ package model;
 
 import po.Material;
 import po.Order;
+import util.OrderState;
+
 interface Rate{
     String getRate(int a,int b);
 }
 
 /**
- * ∂©µ• ˝æ›ƒ£–Õ
+ * ËÆ¢ÂçïÊï∞ÊçÆÊ®°Âûã
  */
 public class OrderModel {
-    private int id;//∂©µ•id
-    private int size;//≤˙∆∑–Õ∫≈
-    private int productnum;//≤˙∆∑ ˝¡ø
-    private String rate;//≤˙∆∑Ω¯∂»
-  //  private String mname;
+    private int id;//ËÆ¢Âçïid
+    private String osize;//‰∫ßÂìÅÂûãÂè∑
+    private int productnum;//‰∫ßÂìÅÊï∞Èáè
+    private int producenum;//Â∑≤Áîü‰∫ßÊï∞Èáè
+    private String rate;//‰∫ßÂìÅËøõÂ∫¶
+    private String state;//ËÆ¢ÂçïÁä∂ÊÄÅ
+
+    //  private String mname;
     private int predict;
     private int reality;
     private int consume;
@@ -22,17 +27,39 @@ public class OrderModel {
 
     public OrderModel(Order order, Material material){
         this.id=order.getId();
-        this.size=order.getSize();
+        switch (order.getSize()){
+            case 0:
+                this.osize="Â∞èÂè∑";
+                break;
+            case 1:
+                this.osize="‰∏≠Âè∑";
+                break;
+            case 2:
+                this.osize="Â§ßÂè∑";
+                break;
+            case 3:
+                this.osize="Âä†Â§ßÂè∑";
+                break;
+        }
         this.productnum=order.getProductNum();
+        this.producenum=order.getRate();
         Rate r;
         r=(a,b)->{
             return a/b*100+"%";
         };
         this.rate=r.getRate(order.getRate(),order.getProductNum());
+        this.state= OrderState.getState(order.getState());
         this.predict = material.getPredict();
         this.reality=material.getReality();
         this.consume=material.getConsume();
         this.scrap=material.getScrap();
+    }
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 
     public int getId() {
@@ -43,12 +70,33 @@ public class OrderModel {
         this.id = id;
     }
 
-    public int getSize() {
-        return size;
+    public String getOsize() {
+        return osize;
     }
 
-    public void setSize(int size) {
-        this.size = size;
+    public void setOsize(int size) {
+        switch (size){
+            case 0:
+                this.osize="Â∞èÂè∑";
+                break;
+            case 1:
+                this.osize="‰∏≠Âè∑";
+                break;
+            case 2:
+                this.osize="Â§ßÂè∑";
+                break;
+            case 3:
+                this.osize="Âä†Â§ßÂè∑";
+                break;
+        }
+    }
+
+    public int getProducenum() {
+        return producenum;
+    }
+
+    public void setProducenum(int producenum) {
+        this.producenum = producenum;
     }
 
     public int getProductNum() {
@@ -97,5 +145,21 @@ public class OrderModel {
 
     public void setScrap(int scrap) {
         this.scrap = scrap;
+    }
+
+    @Override
+    public String toString() {
+        return "OrderModel{" +
+                "id=" + id +
+                ", osize='" + osize + '\'' +
+                ", productnum=" + productnum +
+                ", producenum=" + producenum +
+                ", rate='" + rate + '\'' +
+                ", state='" + state + '\'' +
+                ", predict=" + predict +
+                ", reality=" + reality +
+                ", consume=" + consume +
+                ", scrap=" + scrap +
+                '}';
     }
 }

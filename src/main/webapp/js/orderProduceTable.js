@@ -1,11 +1,77 @@
 $(function () {
-   //  var a=new Date();
-   // // var b=new FormData("yyyy-MM--dd hh:mm:ss");
-   //      var c=getNowFormatDate();
-   //  //alert(c);
-    var logsTable=new orderLogTable();
-    logsTable.Init();
+    //  var a=new Date();
+    // // var b=new FormData("yyyy-MM--dd hh:mm:ss");
+    //      var c=getNowFormatDate();
+    //  //alert(c);
+    getOrderModel();
+
 })
+
+function getOrderModel() {
+    var oid;
+    var process = "0";
+    var url = "/api/process/" + process + "/ordermodel";
+    $.ajax({
+        url: url,
+        type: "get",
+        dataType: "text",
+        success: function (data) {
+            var order = JSON.parse(data);
+            var orderId = $("#orderId");
+            var orderSize = $("#orderSize");
+            var needNum = $("#needNum");
+            var produceNum = $("#produceNum");
+            var ordeerState = $("#orderState");
+            var orderRate = $("#orderRate");
+
+            orderId.append(order.id);
+            orderSize.append(order.osize);
+            needNum.append(order.productNum);
+            produceNum.append(order.producenum);
+            ordeerState.append(order.state);
+            orderRate.append(order.rate);
+
+            var rTable = new rateTable(order.id);
+            rTable.Init();
+            $("#oid").append(order.id);
+            $("#aid").append("1008610");
+            $("#date").append(getNowFormatDate());
+        },
+        error: function () {
+
+        }
+    });
+    return oid;
+}
+
+function submitRate() {
+    var oid = $("#oid").text();
+    var aid = $("#aid").text();
+    var date = $("#date").text();
+    var pnum=$("#pnum").val();
+    var data=JSON.stringify({
+        "date":date,
+        "num":pnum,
+        "uid":aid
+    });
+    var url="/api/order/"+oid+"/process/0/rate";
+    $.ajax({
+        url:url,
+        type:"post",
+        dataType:"text",
+        contentType:"application/json",
+        data:data,
+        success:function (data) {
+            alert(data);
+        },
+        error:function () {
+
+        }
+
+    })
+
+}
+
 
 function getNowFormatDate() {
     var date = new Date();
@@ -19,18 +85,20 @@ function getNowFormatDate() {
     if (strDate >= 0 && strDate <= 9) {
         strDate = "0" + strDate;
     }
-    var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
-        + " " + date.getHours() + seperator2 + date.getMinutes()
-        + seperator2 + date.getSeconds();
+    // var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+    //     + " " + date.getHours() + seperator2 + date.getMinutes()
+    //     + seperator2 + date.getSeconds();
+    var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate;
     return currentdate;
 }
 
-var orderLogTable = function () {
+var rateTable = function (oid) {
     var oTableInit = {};
+    var url = "/api/order/" + oid + "/process/0/rates";
     //初始化Table
     oTableInit.Init = function () {
-        $('#logs_table').bootstrapTable({
-            url: '/order/all',         //请求后台的URL（*）
+        $('#rateTable').bootstrapTable({
+            url: url,         //请求后台的URL（*）
             method: 'get',                      //请求方式（*）
             toolbar: '#toolbar',                //工具按钮用哪个容器
             striped: true,                      //是否显示行间隔色
@@ -42,7 +110,7 @@ var orderLogTable = function () {
             sidePagination: "client",           //分页方式：client客户端分页，server服务端分页（*）
             pageNumber: 1,                       //初始化加载第一页，默认第一页
             pageSize: 5,                       //每页的记录行数（*）
-            pageList: [5 ,10, 25, 50, 100],        //可供选择的每页的行数（*）
+            pageList: [5, 10, 25, 50, 100],        //可供选择的每页的行数（*）
             search: false,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
             searchAlign: 'left',
             contentType: "application/x-www-form-urlencoded",
@@ -60,7 +128,7 @@ var orderLogTable = function () {
             editable: true,
             columns: [
                 {
-                    field: 'oid',
+                    field: 'id',
                     visible: true,
                     sortable: true,
                     title: '订单号'
@@ -70,18 +138,10 @@ var orderLogTable = function () {
                     title: '时间',
                 },
                 {
-                    field: 'type',
-                    title: '日志类型',
+                    field: 'produce',
+                    title: '生产数量',
                     editable: true,
                     //formatter:blog_url
-
-                }, {
-                    field: 'information',
-                    title: '内容'
-
-                }, {
-                    field: 'result',
-                    title: '处理结果',
 
                 },
                 // {

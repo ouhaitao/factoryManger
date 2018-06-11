@@ -9,8 +9,8 @@ $(function () {
         $("#work_title").append(val);
     })
 
-    var aOTable = new allOrderTable();
-    aOTable.Init();
+    // var aOTable = new allOrderTable();
+    // aOTable.Init();
 
     $("#order_wait").click(function () {
         hide();

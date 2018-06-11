@@ -1,5 +1,6 @@
 package mapper;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import po.Order;
 
@@ -18,7 +19,8 @@ public interface OrderMapper {
     @Select("select * from atb_order where process=#{process}")
     List<Order> selectByProcess(Integer process);
 
-    Order selectByState(Integer process);
+    @Select("select * from atb_order where id=#{id} and process=#{process}")
+    Order selectOrder(@Param("id") Integer orderId, @Param("process") Integer process);
 
     int updateByPrimaryKeySelective(Order record);
 

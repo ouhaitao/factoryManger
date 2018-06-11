@@ -9,7 +9,8 @@
     <title>Title</title>
 </head>
 <body>
-<body>
+<script type="text/javascript" src="/js/orderProduceTable.js"></script>
+<script type="text/javascript" src="/js/echarts.min.js"></script>
 <div class="head_nav">
     <div th:include="console :: top_nav" >
         <h2>这里显示专属本页面的内容</h2>
@@ -23,7 +24,7 @@
         </div>
     </div>
     <div class="right_container">
-        <div class="box_produce">
+        <div class="box_produce" >
             <div class="order_data">
                 <div class="table-responsive">
                     <table class="table table-striped ">
@@ -32,20 +33,16 @@
                             <th>尺寸</th>
                             <th>需求数量</th>
                             <th>已产数量</th>
-                            <th>开始时间</th>
-                            <th>预计完成时间</th>
                             <th>订单状态</th>
                             <th>生产进度</th>
                         </tr>
                         <tr>
-                            <th>1002156415</th>
-                            <th>大号</th>
-                            <th>10000</th>
-                            <th>5000</th>
-                            <th>2018-2-12</th>
-                            <th>2018-2-12</th>
-                            <th>生产中</th>
-                            <th>50%</th>
+                            <th id="orderId"></th>
+                            <th id="orderSize"></th>
+                            <th id="needNum"></th>
+                            <th id="produceNum"></th>
+                            <th id="orderState"></th>
+                            <th id="orderRate"></th>
 
                         </tr>
                     </table>
@@ -63,17 +60,58 @@
                 </div>
             </div>
 
-            <div class="operator">
+            <div class="operator" >
                 <a href="#"><button class="btn btn-default">物料管理</button> </a>
-                <a href="#"><button class="btn btn-default">提交进度</button></a>
+                <a href="#"><button class="btn btn-default" data-toggle="modal" data-target="#myModal">提交进度</button></a>
                 <a href="#"><button class="btn btn-default">生产日志</button> </a>
                 <a href="#"><button class="btn btn-default">申请质检</button> </a>
                 <a href="#"><button class="btn btn-default">产品入库</button> </a>
+                <div class="rateTable" style="height: auto;width:auto;background: white;">
+                    <div id="rateTable"></div>
+                </div>
             </div>
-        </div><!-- produce -->
 
+
+        </div><!-- produce -->
+        <!-- 模态框（Modal） -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            &times;
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            提交今日进度
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                       <table class="table">
+                           <tr>
+                               <th>订单Id:</th><th id="oid"></th>
+                           </tr>
+                           <tr>
+                               <th>管理员Id:</th><th id="aid"></th>
+                           </tr>
+                           <tr>
+                               <th>时间：</th><th id="date"></th>
+                           </tr>
+                           <tr>
+                               <th>生产数量：</th><th><input type="text" id="pnum"></th>
+                           </tr>
+                       </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                        </button>
+                        <button type="button" class="btn btn-primary" onclick="javascript:submitRate()">
+                            提交更改
+                        </button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal -->
+        </div>
     </div>
 </div>
-</body>
 </body>
 </html>

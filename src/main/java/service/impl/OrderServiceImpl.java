@@ -10,9 +10,9 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import po.*;
 import service.OrderService;
+import util.LogType;
 import util.OrderProcess;
 import util.OrderState;
-import util.LogType;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -33,6 +33,8 @@ public class OrderServiceImpl implements OrderService {
     ProduceLogMapper produceLogMapper;
     @Autowired
     WarehouseMapper warehouseMapper;
+    @Autowired
+    RateMapper rateMapper;
 
 
     @Override
@@ -70,9 +72,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderModel selectOrderModel(int process) {
-        Map<String,Integer> map=new HashMap<>();
-        map.put("process",process);
-        map.put("state",OrderState.NOTSTART);
+        Map<String, Integer> map = new HashMap<>();
+        map.put("process", process);
+        map.put("state", OrderState.NOTSTART);
         Order order = orderMapper.selectProduceOrder(map);
         Material material = materialMapper.selectByOrderId(order.getId(), process);
         OrderModel orderModel = new OrderModel(order, material);
@@ -108,7 +110,8 @@ public class OrderServiceImpl implements OrderService {
         }
         return true;
     }
-    @Transactional(propagation= Propagation.REQUIRED, rollbackFor=Exception.class)
+
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     @Override
     public String produceOrder(Map<String, String> m) {
         int orderId = Integer.valueOf(m.get("orderId"));
@@ -161,8 +164,8 @@ public class OrderServiceImpl implements OrderService {
         Material material = new Material(orderId, process, mid, produceNum, 0, 0, 0);
         warehouse.setStock(warehouse.getStock() - produceNum);
         warehouseMapper.updateByPrimaryKey(warehouse);
-        int result=materialMapper.insertSelective(material);
-        if (result>0){
+        int result = materialMapper.insertSelective(material);
+        if (result > 0) {
             return "T";
         }
         return "F";
@@ -199,35 +202,46 @@ public class OrderServiceImpl implements OrderService {
         return b.toString();
     }
 
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     @Override
-    public boolean updateRate(Map<String, String> map) {
+    public String updateRate(Map<String, String> map) {
         Integer orderid = Integer.valueOf(map.get("orderId"));
         Integer process = Integer.valueOf(map.get("process"));
-        Integer rate = Integer.valueOf(map.get("rate"));
-        Integer uid = Integer.valueOf("uid");
-        Order order = new Order();
-        order.setId(orderid);
-        order.setProcess(process);
-        order.setRate(rate);
-        int result = orderMapper.updateByPrimaryKeySelective(order);
+        Integer rate = Integer.valueOf(map.get("num"));
+        Integer uid = Integer.valueOf(map.get("uid"));
+        String nowdate = map.get("date");
 
+        Rate rateObject=rateMapper.selectRate(orderid,process,nowdate);
+        if (rateObject!=null){
+            return "今天已经提交过进度了";
+        }
+
+        //更新order表中的进度
+        Order order = orderMapper.selectByPrimaryKey(orderid);
+        order.setRate(order.getRate() + rate);
+        orderMapper.updateByPrimaryKeySelective(order);
+
+        //记录日志
         ProduceLog pl = new ProduceLog();
         pl.setProcess(process);
         pl.setoId(orderid);
         pl.setuId(uid);
-        Date date = new Date();
-        String nowdate = String.valueOf(date.getTime());
         pl.setDate(nowdate);
-        pl.setInformation("生产进度修改为" + rate);
+        pl.setInformation("生产进度更新：" + rate);
         pl.setType(LogType.RATE);
         produceLogMapper.insert(pl);
 
+        //记录rate
+        rateObject=new Rate(orderid,process,nowdate,rate);
+        int result=rateMapper.insert(rateObject);
+
         if (result < 0) {
-            return false;
+            return "F";
         }
-        return true;
+        return "T";
     }
 
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     @Override
     public String updateMaterial(Map<String, String> map) {
         Integer orderid = Integer.valueOf(map.get("orderId"));
@@ -275,5 +289,11 @@ public class OrderServiceImpl implements OrderService {
             return "Failed";
         }
         return "Succeed";
+    }
+
+    @Override
+    public List<Rate> selectRates(Map<String, Object> map) {
+        List<Rate> list=rateMapper.selectRates(map);
+        return list;
     }
 }

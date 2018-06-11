@@ -2,6 +2,7 @@ package service;
 
 import model.OrderModel;
 import po.Order;
+import po.Rate;
 
 import java.util.List;
 import java.util.Map;
@@ -57,7 +58,7 @@ public interface OrderService {
 	 * @param map 参考controller
 	 * @return
 	 */
-	boolean updateRate(Map <String,String> map);
+	String updateRate(Map <String,String> map);
 
 	/**
 	 * 更新订单的原料信息，详情见controller
@@ -65,5 +66,7 @@ public interface OrderService {
 	 * @return
 	 */
 	String updateMaterial(Map<String,String> map);
+
+	List<Rate> selectRates(Map<String,Object> map);
 
 }
