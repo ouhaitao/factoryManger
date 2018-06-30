@@ -29,7 +29,7 @@ a:active {
 	color: white;
 }
 .topTips{
-	width: 300px;
+	width: auto;
 	height: 50px;
 	font-family: "微软雅黑";
 	line-height: 50px;
@@ -38,7 +38,7 @@ a:active {
 	margin:10px 0 0 10px;
 }
 #l{
-	width: 140px;
+	width: auto;
 	margin: 0;
 	text-align: center;
 }

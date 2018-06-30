@@ -9,7 +9,7 @@
     <title>Title</title>
 </head>
 <body>
-<body>
+<script type="text/javascript" src="/js/materialTable.js"></script>
 <div class="head_nav">
     <div th:include="console :: top_nav" >
         <h2>这里显示专属本页面的内容</h2>
@@ -39,20 +39,20 @@
                         <th>剩余数量</th>
                     </tr>
                     <tr>
-                        <th>1008611</th>
-                        <th>1008612</th>
-                        <th>50000</th>
-                        <th>50000</th>
-                        <th>30000</th>
-                        <th>10000</th>
-                        <th>10000</th>
+                        <th id="oid"></th>
+                        <th id="mid"></th>
+                        <th id="predict"></th>
+                        <th id="reality"></th>
+                        <th id="consume"></th>
+                        <th id="scrap"></th>
+                        <th id="surplus"></th>
                     </tr>
                 </table>
             </div>
             <div class="btn_group">
-                <button class="btn btn-default">申请补料</button>
-                <button class="btn btn-info">申请退料</button>
-                <button class="btn btn-danger">处理废料</button>
+                <button class="btn btn-default" onclick="add()">申请补料</button>
+                <button class="btn btn-info" onclick="remove()">申请退料</button>
+                <button class="btn btn-danger" onclick="scrap()">处理废料</button>
             </div>
         </div>
         <div class="panel panel-default">
@@ -64,6 +64,5 @@
         </div>
     </div>
 </div>
-</body>
 </body>
 </html>

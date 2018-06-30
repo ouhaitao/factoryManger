@@ -1,17 +1,13 @@
 package po;
 
-/**
- * Ô­ÁÏÇåµ¥
- * ¼ÇÂ¼Ã¿¸ö¶©µ¥¸÷¸öÁ÷³ÌµÄÔ­ÁÏÁìÈ¡ºÍÊ¹ÓÃÇé¿ö
- */
 public class Material {
-    private Integer oid;//¶©µ¥id
-    private Integer process;//¶©µ¥µ±Ç°Á÷³Ì
-    private Integer mid;//Ô­ÁÏid£¨¶ÔÓ¦²Ö¿âid£©
-    private Integer predict;//Ô¤¼ÆÁìÈ¡Ô­ÁÏ
-    private Integer reality;//Êµ¼ÊÁìÈ¡µÄÔ­ÁÏ
-    private Integer consume;//ÒÑÊ¹ÓÃµÄÔ­ÁÏ
-    private Integer scrap;//·ÏÁÏ
+    private Integer oid;//
+    private Integer process;//
+    private Integer mid;//åŸæ–™id
+    private Integer predict;//é¢„è®¡åŸæ–™
+    private Integer reality;//å®é™…æ•°é‡
+    private Integer consume;//æ¶ˆè€—æ•°é‡
+    private Integer scrap;//åºŸå¼ƒæ•°é‡
 
     public Material(Integer oid, Integer process, Integer mid, Integer predict, Integer reality, Integer consume, Integer scrap) {
         this.oid = oid;

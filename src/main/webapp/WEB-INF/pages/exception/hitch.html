@@ -49,9 +49,9 @@
 
                         <tr>
                             <th>印刷部</th>
-                            <th><input type="input"/></th>
-                            <th><input type="input"/></th>
-                            <th>2018-05-14</th>
+                            <th><input type="input" id="admin"/></th>
+                            <th><input type="input" id="phone"/></th>
+                            <th id="date"></th>
                         </tr>
                         <tr>
                             <th>故障设备</th>
@@ -61,25 +61,15 @@
                         </tr>
                         <tr>
                             <th>
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default dropdown-toggle"
-                                            data-toggle="dropdown">
-                                        默认 <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#">印刷机</a></li>
-                                        <li><a href="#">传送带</a></li>
-                                        <li><a href="#">控制器</a></li>
-                                    </ul>
-                                </div>
+                                <input type="text" id="name" />
                             </th>
-                            <th><textarea></textarea></th>
-                            <th><textarea></textarea></th>
-                            <th><textarea></textarea></th>
+                            <th><textarea id="summary"></textarea></th>
+                            <th><textarea id="info"></textarea></th>
+                            <th><textarea id="mark"></textarea></th>
                         </tr>
                     </table>
                     <div style="width: 100%;height: auto;overflow: auto; padding:10px">
-                        <button class="btn btn-warning" id="sub_malfunction" style="float: right">提交报修单</button>
+                        <button class="btn btn-warning" id="sub_malfunction" style="float: right" onclick="sub()">提交报修单</button>
                     </div>
                 </div>
             </div>

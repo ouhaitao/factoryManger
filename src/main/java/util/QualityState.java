@@ -3,10 +3,10 @@ package util;
 public class QualityState {
 
 	/**
-	 * NOCHECK Î´ÖÊ¼ì
-	 * CHECKING ÖÊ¼ìÖĞ
-	 * CHECKPASS ÖÊ¼ìÍ¨¹ı
-	 * CHECKFAILED ÖÊ¼ìÊ§°Ü
+	 * NOCHECK æœªè´¨æ£€
+	 * CHECKING è´¨æ£€ä¸­
+	 * CHECKPASS ä¹‹é—´å¤±è´¥
+	 * CHECKFAILED è´¨æ£€åˆæ ¼
 	 */
 	public static final int NOCHECK=0;
 	public static final int CHECKING=1;

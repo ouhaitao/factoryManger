@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import po.Order;
 import po.ProduceLog;
 import po.Rate;
+import service.MaterialService;
 import service.OrderService;
+import service.ProduceLogService;
 import util.OrderState;
 
 import java.util.HashMap;
@@ -17,11 +19,15 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping(value = "/api",produces = "application/text;charset=utf-8")
 public class OrderController {
     private static final Logger log = LoggerFactory.getLogger(OrderController.class);
     @Autowired
     OrderService orderService;
+    @Autowired
+    ProduceLogService produceLogService;
+    @Autowired
+    MaterialService materialService;
 
     /**
      * 获取该流程下等待处理的订单
@@ -31,8 +37,7 @@ public class OrderController {
      */
     @GetMapping(value = "/process/{process}/orders")
     public String apiGetWaitOrderList(@PathVariable("process") int process) {
-        List<Order> list = null;
-        list = orderService.findOrderByProcess(process);
+        List<Order> list = orderService.findOrderByProcess(process);
         return JSON.toJSONString(list);
     }
 
@@ -60,9 +65,10 @@ public class OrderController {
      */
     @GetMapping(value = "/order/{oid}/process/{process}producelog")
     public String apiGetProduceLog(@PathVariable("oid") String oid, @PathVariable("process") String process) {
-        List<ProduceLog> list = null;
-
-
+        Map<String, String> map = new HashMap<>();
+        map.put("oId", oid);
+        map.put("process", process);
+        List<ProduceLog> list = produceLogService.selectLog(map);
         return JSON.toJSONString(list);
     }
 
@@ -78,7 +84,7 @@ public class OrderController {
         map.put("oid", oid);
         map.put("process", process);
         List<Rate> list = orderService.selectRates(map);
-        log.info("selectRates:",list.toString());
+        log.info("selectRates:", list.toString());
         return JSON.toJSONString(list);
     }
 
@@ -106,9 +112,11 @@ public class OrderController {
                 break;
             case "quality":
                 //申请质检操作(必须生产进度100%的才能质检)
-
+                map.put("state", "" + OrderState.QUALITY);
+                result = orderService.qualityOrder(map);
                 break;
             case "store":
+                result = orderService.storeOrder(map);
                 //商品入库（必须质检合格的订单才能入库）
                 break;
 
@@ -132,20 +140,27 @@ public class OrderController {
     @PutMapping(value = "/order/{oid}/process/{process}/material")
     public String apiUpdateMaterial(@PathVariable("oid") String id, @PathVariable("process") String process, @RequestBody Map<String, String> map) {
         String k = map.get("operate");
+        map.put("oId", id);
+        map.put("process", process);
+        String result;
         switch (k) {
             case "add":
                 //添加原料
+                result = materialService.addMaterial(map);
                 break;
-
             case "remove":
                 //退料操作
+                result = materialService.deleteMaterial(map);
                 break;
-
             case "scrap":
                 //处理废料
+                result = materialService.scrapMaterial(map);
+                break;
+            default:
+                result = "";
                 break;
         }
-        return "result";
+        return result;
     }
 
     /**
@@ -160,11 +175,10 @@ public class OrderController {
      */
     @PostMapping(value = "/order/{oid}/process/{process}/rate")
     public String apiAddProduceLog(@PathVariable("oid") String id, @PathVariable("process") String process, @RequestBody Map<String, String> map) {
-        map.put("orderId",id);
-        map.put("process",process);
-        String result=orderService.updateRate(map);
-        log.info("updateRate:",result);
-
+        map.put("orderId", id);
+        map.put("process", process);
+        String result = orderService.updateRate(map);
+        log.info("updateRate:", result);
         return result;
     }
 
@@ -175,8 +189,10 @@ public class OrderController {
      */
     @GetMapping(value = "/order/{oid}/process/{process}/quality")
     public String apiGetNowQuality(@PathVariable("oid") String oid, @PathVariable("process") String process) {
-
-        return "result";
+        Map<String, String> map = new HashMap<>();
+        map.put("orderId", oid);
+        map.put("process", process);
+        return JSON.toJSONString(orderService.selectQuality(map));
     }
 
     /**
@@ -186,9 +202,27 @@ public class OrderController {
      */
     @GetMapping(value = "/order/{oid}/process/{process}/qualitys")
     public String apiGetHistoryQuality(@PathVariable("oid") String oid, @PathVariable("process") String process) {
-
-        return "result";
+        Map<String, String> map = new HashMap<>();
+        map.put("oId", oid);
+        map.put("process", process);
+        return JSON.toJSONString(orderService.selectQuality(map));
     }
 
+    @GetMapping(value = "/order/{oid}/process/{process}/logs")
+    public String apiGetLogs(@PathVariable("oid") String oid, @PathVariable("process") String process,@RequestParam("type")String type) {
+        Map<String, String> map = new HashMap<>();
+        map.put("oId", oid);
+        map.put("process", process);
+        map.put("type",type);
+        return JSON.toJSONString(produceLogService.selectLog(map));
+    }
+
+    @GetMapping(value = "/order/{oid}/process/{process}/material")
+    public String apiGetMaterial(@PathVariable("oid")String oid,@PathVariable("process")String process){
+        Map<String,String> map=new HashMap<>();
+        map.put("oId",oid);
+        map.put("process",process);
+        return JSON.toJSONString(orderService.selectMaterial(map));
+    }
 
 }

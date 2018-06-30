@@ -38,6 +38,9 @@
   </insert>
 
   <insert id="insertSelective" parameterType="po.QualityReport" >
+    <selectKey keyProperty="id"  resultType="java.lang.Integer" keyColumn="id">
+      select LAST_INSERT_ID()
+    </selectKey>
     insert into atb_qualityReport
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

@@ -77,37 +77,10 @@ var empTable = function () {
                     title: '处理结果',
 
                 }
-                // {
-                //     field: 'operate',
-                //     title: '操作',
-                //     events: 'operateEvents',
-                //     formatter: edit_btn//自定义方法，添加编辑按钮
-                //
-                // }
-
             ],
-            // rowStyle: function (row, index) {
-            //     var classesArr = ['success', 'info'];
-            //     var strclass = "";
-            //     if (index % 2 === 0) {//偶数行
-            //         strclass = classesArr[1];
-            //     } else {//奇数行
-            //         strclass = classesArr[1];
-            //     }
-            //     return { classes: strclass, height:'30px'};
-            // },//隔行变色
         });
-
     };
 
-
-    // //得到查询的参数
-    // oTableInit.queryParams = function (params) {
-    //     var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
-    //         uId: "1008612"
-    //     };
-    //     return temp;
-    // };
     return oTableInit;
 };
 

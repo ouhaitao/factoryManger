@@ -1,11 +1,9 @@
 package po;
-
-//仓库
 public class Warehouse {
 
 	private Integer id;
-	private String materialtype;//原料种类
-	private Integer stock;//库存
+	private String materialtype;//鍘熸枡绫诲瀷
+	private Integer stock;//搴撳瓨
 
 	public Warehouse() {
 	}

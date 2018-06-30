@@ -1,17 +1,17 @@
 package po;
 
 /**
- * ÖÊ¼ì±¨¸æ
+ * è´¨æ£€æŠ¥å‘Š
  */
 public class QualityReport {
-    private Integer id;//ÖÊ¼ìµ¥ºÅ
-    private Integer oid;//¶©µ¥id
-    private String submit;//Ìá½»²¿ÃÅ
-    private String date;//Ê±¼ä
-    private Integer sample;//³éÑùÊıÁ¿
-    private Integer state;//ÖÊ¼ì×´Ì¬
-    private Integer result;//ÖÊ¼ì½á¹û
-    private Integer scrap;//²»ºÏ¸ñÊıÁ¿
+    private Integer id;//è´¨æ£€å•å·
+    private Integer oid;//è®¢å•id
+    private String submit;//æäº¤éƒ¨é—¨
+    private String date;//æ—¶é—´
+    private Integer sample;//æŠ½æ ·æ•°é‡
+    private Integer state;//è´¨æ£€çŠ¶æ€
+    private Integer result;//è´¨æ£€ç»“æœ
+    private Integer scrap;//ä¸åˆæ ¼æ•°é‡
     private String info;
 
     public QualityReport(Integer id, Integer oid, String submit, String date, Integer sample, Integer state, Integer result, Integer scrap,String info) {

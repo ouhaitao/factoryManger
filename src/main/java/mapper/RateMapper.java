@@ -16,7 +16,7 @@ public interface RateMapper {
 
     Rate selectByPrimaryKey(Rate key);
 
-    @Select("select * from atb_rate where id=#{oid} and process=#{process} order by date desc")
+    @Select("select * from atb_rate where id=#{oid} and process=#{process} order by date desc limit 0,7")
     List<Rate> selectRates(Map<String,Object> map);
 
     int updateByPrimaryKeySelective(Rate record);

@@ -1,7 +1,9 @@
 package service;
 
 import model.OrderModel;
+import po.Material;
 import po.Order;
+import po.QualityReport;
 import po.Rate;
 
 import java.util.List;
@@ -51,6 +53,8 @@ public interface OrderService {
 
 	String qualityOrder(Map<String,String> m);
 
+	QualityReport selectQuality(Map<String,String> map);
+
 	String storeOrder(Map<String,String> m);
 
 	/**
@@ -60,13 +64,8 @@ public interface OrderService {
 	 */
 	String updateRate(Map <String,String> map);
 
-	/**
-	 * 更新订单的原料信息，详情见controller
-	 * @param map
-	 * @return
-	 */
-	String updateMaterial(Map<String,String> map);
-
 	List<Rate> selectRates(Map<String,Object> map);
+
+	Material selectMaterial(Map<String,String> map);
 
 }

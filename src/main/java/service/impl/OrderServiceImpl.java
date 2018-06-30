@@ -10,9 +10,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import po.*;
 import service.OrderService;
-import util.LogType;
-import util.OrderProcess;
-import util.OrderState;
+import util.*;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -161,7 +159,7 @@ public class OrderServiceImpl implements OrderService {
         produceLogMapper.insert(pl);
 
         //记录原料信息以及修改仓库库存
-        Material material = new Material(orderId, process, mid, produceNum, 0, 0, 0);
+        Material material = new Material(orderId, process, mid, produceNum, produceNum, 0, 0);
         warehouse.setStock(warehouse.getStock() - produceNum);
         warehouseMapper.updateByPrimaryKey(warehouse);
         int result = materialMapper.insertSelective(material);
@@ -174,6 +172,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public String qualityOrder(Map<String, String> m) {
         int id = Integer.valueOf(m.get("orderId"));
+        int process=Integer.valueOf(m.get("process"));
         Order order = orderMapper.selectByPrimaryKey(id);
         int state = order.getState();
         if (state == OrderState.QUALITY) {
@@ -185,8 +184,23 @@ public class OrderServiceImpl implements OrderService {
         if (state != OrderState.PRODUCE) {
             return "订单当前状态不能质检";
         }
+        QualityReport qualityReport=new QualityReport();
+        qualityReport.setOid(id);
+        qualityReport.setDate(CustomFormatter.fomartterDateToString(CustomFormatter.baseFormat,new Date()));
+        qualityReport.setsubmit(OrderProcess.getProcess(process));
+        qualityReport.setSample(order.getProductNum()/2);
+        qualityReport.setState(QualityState.NOCHECK);
+        qualityReportMapper.insertSelective(qualityReport);
         Boolean bl = updateOrderState(m);
         return bl.toString();
+
+    }
+
+    @Override
+    public QualityReport selectQuality(Map<String, String> map) {
+        int id = Integer.valueOf(map.get("orderId"));
+        int process=Integer.valueOf(map.get("process"));
+        return qualityReportMapper.selectByOrderId(id,OrderProcess.getProcess(process));
     }
 
     @Override
@@ -198,7 +212,11 @@ public class OrderServiceImpl implements OrderService {
         if (qualityReport == null || qualityReport.getResult() != 1) {
             return "只有质检合格的订单才能入库";
         }
-        Boolean b = updateOrderState(m);
+        Order order=new Order();
+        order.setId(id);
+        order.setProcess(process+1);
+        order.setState(OrderState.NOTSTART);
+        Boolean b = orderMapper.updateByPrimaryKeySelective(order)>0?true:false;
         return b.toString();
     }
 
@@ -210,11 +228,19 @@ public class OrderServiceImpl implements OrderService {
         Integer rate = Integer.valueOf(map.get("num"));
         Integer uid = Integer.valueOf(map.get("uid"));
         String nowdate = map.get("date");
+        Integer consume=Integer.valueOf(map.get("consume"));
+        Integer scrap=Integer.valueOf(map.get("scrap"));
 
         Rate rateObject=rateMapper.selectRate(orderid,process,nowdate);
         if (rateObject!=null){
             return "今天已经提交过进度了";
         }
+
+        //更新原料使用
+        Material material=materialMapper.selectByOrderId(orderid,process);
+        material.setConsume(material.getConsume()+consume);
+        material.setScrap(material.getScrap()+scrap);
+        materialMapper.updateByPrimaryKeySelective(material);
 
         //更新order表中的进度
         Order order = orderMapper.selectByPrimaryKey(orderid);
@@ -241,59 +267,16 @@ public class OrderServiceImpl implements OrderService {
         return "T";
     }
 
-    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    @Override
-    public String updateMaterial(Map<String, String> map) {
-        Integer orderid = Integer.valueOf(map.get("orderId"));
-        Integer process = Integer.valueOf(map.get("process"));
-        Integer mid = Integer.valueOf(map.get("mid"));
-        Integer uid = Integer.valueOf("uid");
-        String operate = map.get("operate");
-        Integer reality = Integer.valueOf("reality");
-        Integer consume = Integer.valueOf("consume");
-
-        ProduceLog pl = new ProduceLog();
-        pl.setProcess(process);
-        pl.setoId(orderid);
-        pl.setuId(uid);
-        Date date = new Date();
-        String nowdate = String.valueOf(date.getTime());
-        pl.setDate(nowdate);
-
-        Material mat = new Material();
-        mat.setOid(orderid);
-        mat.setProcess(process);
-        mat.setMid(mid);
-
-        if (operate.equals("add")) {
-            mat.setReality(reality);
-            pl.setInformation("增加原料数量：" + reality);
-            pl.setType(LogType.MATERIAL);
-
-        } else if (operate.equals("remove")) {
-            Warehouse wh = warehouseMapper.selectByPrimaryKey(mid);
-            int stock = wh.getStock();
-            wh.setStock(stock + (reality - consume));
-            pl.setInformation("退料数量：" + (reality - consume));
-            pl.setType(LogType.MATERIAL);
-        } else {
-            Integer scrap = Integer.valueOf("scrap");
-            mat.setScrap(0);
-            pl.setInformation("处理废料数量：" + scrap);
-            pl.setType(LogType.MATERIAL);
-        }
-
-        int result = materialMapper.updateByPrimaryKey(mat);
-
-        if (result < 0) {
-            return "Failed";
-        }
-        return "Succeed";
-    }
-
     @Override
     public List<Rate> selectRates(Map<String, Object> map) {
         List<Rate> list=rateMapper.selectRates(map);
         return list;
+    }
+
+    @Override
+    public Material selectMaterial(Map<String, String> map) {
+        Integer oid=Integer.valueOf(map.get("oId"));
+        Integer process=Integer.valueOf(map.get("process"));
+        return materialMapper.selectByOrderId(oid,process);
     }
 }

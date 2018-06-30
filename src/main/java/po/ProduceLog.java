@@ -1,18 +1,16 @@
 package po;
 
-/**
- *用来记录生产过程中的日志信息,如生产中的保修信息，人员调动，补货退货，质检报告等信息
- */
-public class ProduceLog {
-    private int id;//日志id
-    private int oid;//订单id
-    private int process;//订单流程
-    private int uid;//管理员id
-    private String date;//提交时间
 
-    private int type;//日志类型
-    private String information;//日志内容
-    private String result;//处理结果
+public class ProduceLog {
+    private int id;//
+    private int oid;//
+    private int process;//
+    private int uid;//
+    private String date;//
+
+    private int type;//
+    private String information;//
+    private String result;//
 
 
     public ProduceLog() {

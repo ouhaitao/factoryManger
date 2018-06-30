@@ -50,23 +50,25 @@
 
             </div><!-- order data-->
 
-            <div class="data_form" style="width: 50%;height: auto; float: left;">
-                <div class="box1" style="width: auto;height:auto;overflow: auto;float: left;">
-                    <div id="main" style="width: 400px;height:250px;float: left"></div>
+
+                <div class="data_form" style="width: 50%;height: auto; float: left;">
+                    <div class="box1" style="width: auto;height:auto;overflow: auto;float: left;">
+                        <div id="main" style="width: 400px;height:250px;float: left"></div>
+                    </div>
+
+                    <div class="box1" style="width: auto;height:auto;overflow: auto;float: left;">
+                        <div id="produce_line"style="width: 400px;height:200px;float: left"></div>
+                    </div>
                 </div>
 
-                <div class="box1" style="width: auto;height:auto;overflow: auto;float: left;">
-                    <div id="produce_line"style="width: 400px;height:200px;float: left"></div>
-                </div>
-            </div>
 
-            <div class="operator" >
-                <a href="#"><button class="btn btn-default">物料管理</button> </a>
+            <div class="operator" style="width: 50%;float: left;">
+                <a href="./material"><button class="btn btn-default">物料管理</button> </a>
                 <a href="#"><button class="btn btn-default" data-toggle="modal" data-target="#myModal">提交进度</button></a>
-                <a href="#"><button class="btn btn-default">生产日志</button> </a>
-                <a href="#"><button class="btn btn-default">申请质检</button> </a>
-                <a href="#"><button class="btn btn-default">产品入库</button> </a>
-                <div class="rateTable" style="height: auto;width:auto;background: white;">
+                <a href="./logs"><button class="btn btn-default">生产日志</button> </a>
+                <a href="javascript:quality()"><button class="btn btn-default">申请质检</button> </a>
+                <a href="javascript:store()"><button class="btn btn-default">产品入库</button> </a>
+                <div class="rateTable" >
                     <div id="rateTable"></div>
                 </div>
             </div>
@@ -98,6 +100,12 @@
                            </tr>
                            <tr>
                                <th>生产数量：</th><th><input type="text" id="pnum"></th>
+                           </tr>
+                           <tr>
+                               <th>消耗原料：</th><th><input type="text" id="consume"></th>
+                           </tr>
+                           <tr>
+                               <th>废弃原料：</th><th><input type="text" id="scrap"></th>
                            </tr>
                        </table>
                     </div>

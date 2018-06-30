@@ -2,12 +2,14 @@ package service.impl;
 
 import mapper.ProduceLogMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import po.ProduceLog;
 import service.ProduceLogService;
 
 import java.util.List;
 import java.util.Map;
 
+@Service
 public class ProduceLogServiceImpl implements ProduceLogService{
     @Autowired
     ProduceLogMapper produceLogMapper;
@@ -35,7 +37,7 @@ public class ProduceLogServiceImpl implements ProduceLogService{
     public List<ProduceLog> selectLog(Map<String, String> map) {
         Integer oid=Integer.valueOf(map.get("oId"));
         Integer process=Integer.valueOf(map.get("process"));
-        List<ProduceLog> logList=produceLogMapper.selectByOrderKey(oid,process);
+        List<ProduceLog> logList=produceLogMapper.selectByOrderKey(oid,process,map.get("type"));
         return logList;
     }
 

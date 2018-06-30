@@ -1,11 +1,11 @@
 package util;
 
 /**
- * ²¿ÃÅ´úºÅ/Á÷³ÌºÅ
+ * ï¿½ï¿½ï¿½Å´ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½Ìºï¿½
  */
 public class DepartmentNum {
-    public static final int PRINTING=0;//Ó¡Ë¢
-    public static final int CUT=1;//Ä£ÇÐ
-    public static final int MOLDING=2;//³ÉÐÍ
-    public static final int PACKING=3;//°ü×°
+    public static final int PRINTING=0;
+    public static final int CUT=1;
+    public static final int MOLDING=2;
+    public static final int PACKING=3;
 }

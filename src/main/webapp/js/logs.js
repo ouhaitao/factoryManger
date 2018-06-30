@@ -1,29 +1,7 @@
 $(function () {
-    var matTable = new logTable();
-    matTable.Init();
-    getMaterial();
+    var table=new logTable();
+    table.Init();
 })
-
-function getMaterial() {
-    var oid=$.cookie("oid");
-    var process=$.cookie("process");
-    var url = "/api/order/"+oid+"/process/" + process + "/material";
-    $.ajax({
-        url:url,
-        type:"get",
-        dataType:"text",
-        success:function (data) {
-            var material=JSON.parse(data);
-            $("#oid").append(material.oid);
-            $("#mid").append(material.mid);
-            $("#predict").append(material.predict);
-            $("#reality").append(material.reality);
-            $("#consume").append(material.consume);
-            $("#scrap").append(material.scrap);
-            $("#surplus").append(material.reality-material.consume);
-        }
-    })
-}
 
 var logTable = function () {
     var oTableInit = {};
@@ -32,7 +10,7 @@ var logTable = function () {
     var url = "/api/order/" + oid + "/process/"+process+"/logs";
     //初始化Table
     oTableInit.Init = function () {
-        $('#material_table').bootstrapTable({
+        $('#logs_table').bootstrapTable({
             url: url,         //请求后台的URL（*）
             method: 'get',                      //请求方式（*）
             toolbar: '#toolbar',                //工具按钮用哪个容器
@@ -41,7 +19,7 @@ var logTable = function () {
             pagination: true,                   //是否显示分页（*）
             sortable: true,                     //是否启用排序
             sortOrder: "asc",                   //排序方式
-            queryParams: {"type": "1"},//传递参数（*）
+            queryParams: {"type": "%"},//传递参数（*）
             sidePagination: "client",           //分页方式：client客户端分页，server服务端分页（*）
             pageNumber: 1,                       //初始化加载第一页，默认第一页
             pageSize: 5,                       //每页的记录行数（*）
@@ -121,74 +99,4 @@ function log_type(value,column,index) {
             return "异常";
             break;
     }
-}
-
-function add() {
-    var oid=$.cookie("oid");
-    var process=$.cookie("process");
-    var mid=$("#mid").text();
-    var num=$("#predict").text()/10;
-    var uid=$.cookie("username");
-    var url="/api/order/"+oid+"/process/"+process+"/material";
-    $.ajax({
-        url:url,
-        type:"put",
-        dataType:"text",
-        contentType:"application/json",
-        data:JSON.stringify({
-            "mId":mid,
-            "num":num,
-            "uid":uid,
-            "operate":"add"
-        }),
-        success:function (data) {
-            alert(data);
-        }
-    })
-}
-function remove() {
-    var oid=$.cookie("oid");
-    var process=$.cookie("process");
-    var mid=$("#mid").text();
-    var num=$("#surplus").text();
-    var uid=$.cookie("username");
-    var url="/api/order/"+oid+"/process/"+process+"/material";
-    $.ajax({
-        url:url,
-        type:"put",
-        dataType:"text",
-        contentType:"application/json",
-        data:JSON.stringify({
-            "mId":mid,
-            "num":num,
-            "uid":uid,
-            "operate":"remove"
-        }),
-        success:function (data) {
-            alert(data);
-        }
-    })
-}
-function scrap() {
-    var oid=$.cookie("oid");
-    var process=$.cookie("process");
-    var mid=$("#mid").text();
-    var num=$("#scrap").text();
-    var uid=$.cookie("username");
-    var url="/api/order/"+oid+"/process/"+process+"/material";
-    $.ajax({
-        url:url,
-        type:"put",
-        dataType:"text",
-        contentType:"application/json",
-        data:JSON.stringify({
-            "mId":mid,
-            "num":num,
-            "uid":uid,
-            "operate":"scrap"
-        }),
-        success:function (data) {
-            alert(data);
-        }
-    })
 }

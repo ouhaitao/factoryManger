@@ -1,15 +1,22 @@
 $(function () {
-    //  var a=new Date();
-    // // var b=new FormData("yyyy-MM--dd hh:mm:ss");
-    //      var c=getNowFormatDate();
-    //  //alert(c);
     getOrderModel();
 
 })
 
-function getOrderModel() {
+function getProduces() {
     var oid;
     var process = "0";
+    var url = "/api/process/" + process + "/ordermodel";
+    $.ajax({
+        url:url,
+        type:"get",
+
+    })
+}
+
+function getOrderModel() {
+    var oid;
+    var process = $.cookie("process");
     var url = "/api/process/" + process + "/ordermodel";
     $.ajax({
         url: url,
@@ -24,6 +31,7 @@ function getOrderModel() {
             var ordeerState = $("#orderState");
             var orderRate = $("#orderRate");
 
+            $.cookie("oid",order.id,{path:"/"});
             orderId.append(order.id);
             orderSize.append(order.osize);
             needNum.append(order.productNum);
@@ -49,10 +57,14 @@ function submitRate() {
     var aid = $("#aid").text();
     var date = $("#date").text();
     var pnum=$("#pnum").val();
+    var consume=$("#consume").val();
+    var scrap=$("#scrap").val();
     var data=JSON.stringify({
         "date":date,
         "num":pnum,
-        "uid":aid
+        "uid":aid,
+        "consume":consume,
+        "scrap":scrap
     });
     var url="/api/order/"+oid+"/process/0/rate";
     $.ajax({
@@ -72,25 +84,47 @@ function submitRate() {
 
 }
 
-
-function getNowFormatDate() {
-    var date = new Date();
-    var seperator1 = "-";
-    var seperator2 = ":";
-    var month = date.getMonth() + 1;
-    var strDate = date.getDate();
-    if (month >= 1 && month <= 9) {
-        month = "0" + month;
-    }
-    if (strDate >= 0 && strDate <= 9) {
-        strDate = "0" + strDate;
-    }
-    // var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
-    //     + " " + date.getHours() + seperator2 + date.getMinutes()
-    //     + seperator2 + date.getSeconds();
-    var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate;
-    return currentdate;
+function quality() {
+    var oId=$("#orderId").text();
+    var uid=$.cookie("username");
+   $.ajax({
+       url:"/api/order/"+oId+"/process/0/state",
+       type:"put",
+       dataType:"text",
+       contentType:"application/json",
+       data:JSON.stringify({
+           "operate":"quality",
+           "uid":"1008610"
+       }),
+       success:function (data) {
+           alert(data);
+       },
+       error:function (data) {
+           
+       }
+   })
 }
+function store() {
+    var oId=$("#orderId").text();
+    var uid=$.cookie("username");
+    $.ajax({
+        url:"/api/order/"+oId+"/process/0/state",
+        type:"put",
+        dataType:"text",
+        contentType:"application/json",
+        data:JSON.stringify({
+            "operate":"store",
+            "uid":"1008610"
+        }),
+        success:function (data) {
+            alert(data);
+        },
+        error:function (data) {
+
+        }
+    })
+}
+
 
 var rateTable = function (oid) {
     var oTableInit = {};
@@ -118,6 +152,7 @@ var rateTable = function (oid) {
             showColumns: true,                  //是否显示所有的列
             minimumCountColumns: 2,             //最少允许的列数
             clickToSelect: true,                //是否启用点击选中行
+            // width:400,
             //height: 800,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
             // uniqueId: "id",                     //每一行的唯一标识，一般为主键列
             showToggle: false,                    //是否显示详细视图和列表视图的切换按钮
@@ -144,36 +179,27 @@ var rateTable = function (oid) {
                     //formatter:blog_url
 
                 },
-                // {
-                //     field: 'operate',
-                //     title: '操作',
-                //     events: 'operateEvents',
-                //     formatter: edit_btn//自定义方法，添加编辑按钮
-                //
-                // }
 
             ],
-            // rowStyle: function (row, index) {
-            //     var classesArr = ['success', 'info'];
-            //     var strclass = "";
-            //     if (index % 2 === 0) {//偶数行
-            //         strclass = classesArr[1];
-            //     } else {//奇数行
-            //         strclass = classesArr[1];
-            //     }
-            //     return { classes: strclass, height:'30px'};
-            // },//隔行变色
+
         });
 
     };
 
-
-    // //得到查询的参数
-    // oTableInit.queryParams = function (params) {
-    //     var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
-    //         uId: "1008612"
-    //     };
-    //     return temp;
-    // };
     return oTableInit;
 };
+function getNowFormatDate() {
+    var date = new Date();
+    var seperator1 = "-";
+    var seperator2 = ":";
+    var month = date.getMonth() + 1;
+    var strDate = date.getDate();
+    if (month >= 1 && month <= 9) {
+        month = "0" + month;
+    }
+    if (strDate >= 0 && strDate <= 9) {
+        strDate = "0" + strDate;
+    }
+    var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate;
+    return currentdate;
+}

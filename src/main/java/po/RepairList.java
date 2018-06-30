@@ -1,28 +1,26 @@
 package po;
 
-/**
- * ±®–ﬁµ•
- */
+//Êä•‰øÆÂçï
 public class RepairList {
-    private Integer id;//±®–ﬁµ•id
-    private String submit;//…Í±®≤ø√≈
-    private Integer uid;//π‹¿Ì‘±id
-    private String phone;//¡™œµ∑Ω Ω
-    private String date;//…Í±® ±º‰
-    private Integer type;//π ’œ¿‡–Õ
-    private String summary;//π ’œºÚΩÈ
-    private String info;//π ’œ¿‡»›
-    private String mark;//±∏◊¢
-    private String handle;//¥¶¿Ì≤ø√≈
-    private String result;//¥¶¿ÌΩ·π˚
+    private Integer id;//?????id
+    private String submit;//??????
+    private Integer uid;//?????id
+    private String phone;//??????
+    private String date;//?????
+    private String type;//????????
+    private String summary;//??????
+    private String info;//????????
+    private String mark;//???
+    private String handle;//??????
+    private String result;//??????
 
-    public RepairList(Integer id, String submit, Integer uid, String phone, String date, Integer type, String summary, String info, String mark, String handle, String result) {
+    public RepairList(Integer id, String submit, Integer uid, String phone, String date, String name, String summary, String info, String mark, String handle, String result) {
         this.id = id;
         this.submit = submit;
         this.uid = uid;
         this.phone = phone;
         this.date = date;
-        this.type = type;
+        this.type = name;
         this.summary = summary;
         this.info = info;
         this.mark= mark;
@@ -73,11 +71,11 @@ public class RepairList {
         this.date = date;
     }
 
-    public Integer getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(Integer type) {
+    public void setType(String type) {
         this.type = type;
     }
 

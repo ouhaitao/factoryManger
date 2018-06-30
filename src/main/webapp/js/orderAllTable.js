@@ -1,3 +1,8 @@
+$(function () {
+    var allOrders=new allOrderTable();
+    allOrders.Init();
+})
+
 window.operateEvents = {
     'click #produce': function (e, value, row, index) {
         if (!confirm("确认投入生产？"))

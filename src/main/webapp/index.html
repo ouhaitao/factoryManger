@@ -19,7 +19,7 @@
     function login() {
         var username = $("#username").val();
         var password = $("#pwd").val();
-        var department = $("input[name='department']:checked").val();
+        var process = $("input[name='department']:checked").val();
 
         if (username == "") {
             alert("请输入帐号");
@@ -29,7 +29,7 @@
             alert("请输入密码");
             return;
         }
-        if (department==undefined){
+        if (process==undefined){
             alert("请选择部门");
             return;
         }
@@ -49,8 +49,9 @@
                 if (data.access_token !="") {
                     $.cookie("access_token",data.access_token,{path:"/"});
                     $.cookie("refresh_token",data.refresh_token,{path:"/"});
-                    $.cookie("department",department,{path:"/"});
-                    window.location.href="/"+department+"/admin/?access_token="+data.access_token;
+                    $.cookie("username",username,{path:"/"});
+                    $.cookie("process",process,{path:"/"});
+                    window.location.href="/order/?access_token="+data.access_token;
                 } else {
                    alert(msg);
                 }
@@ -77,7 +78,7 @@ You have been logged out.
 <div class="main">
     <div class="loginBox">
     <div class="topTips">
-        <label id="l">Login</label>
+        <label id="l">纸杯生产管理系统</label>
 
     </div>
     <!-- 用户名框 -->
@@ -99,10 +100,10 @@ You have been logged out.
     <!--&lt;!&ndash; <a class="getOther" href="javascript:void(0);" onclick="reloadImg();" title="点击此处可以更新验证码。">更新</a>&ndash;&gt;-->
     <!--</div>-->
     <div style="margin-left: 10px">
-        <input type="radio" name="department" value="printing">印刷部</input>
-        <input type="radio" name="department" value="cut">模切部</input>
-        <input type="radio" name="department" value="molding">成型部</input>
-        <input type="radio" name="department" value="packing">包装部</input>
+        <input type="radio" name="department" value="0">印刷部</input>
+        <input type="radio" name="department" value="1">模切部</input>
+        <input type="radio" name="department" value="2">成型部</input>
+        <input type="radio" name="department" value="3">包装部</input>
     </div>
 
     <!-- 登录按钮 -->
